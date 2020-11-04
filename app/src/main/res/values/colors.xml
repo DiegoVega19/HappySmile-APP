@@ -15,4 +15,8 @@
     <color name="intro_title_color">#000000</color>
     <color name="intro_description_color">#656565</color>
 
+    <!-- colors for header -->
+    <color name="header_color">#29B6F6</color>
+
+
 </resources>

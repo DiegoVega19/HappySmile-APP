@@ -9,14 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainMenu">
-        </activity>
-        <activity android:name=".LoginActivity">
-        </activity>
+        <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".ExpedienteEndodonciaActivity" />
+        <activity android:name=".ExpedienteSeguimientoActivity" />
+        <activity android:name=".ExpedientePrincipalActivity" />
+        <activity android:name=".ExpedienteActivity" />
+        <activity android:name=".DetalleCitaActivity" />
+        <activity android:name=".CitasActivity" />
+        <activity android:name=".MainMenu" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".ViewPagerActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

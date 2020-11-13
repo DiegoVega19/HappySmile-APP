@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Happy Smile</string>
+
+    <string-array name="sexo">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+
+    <string-array name="estadocivil">
+        <item>Soltero</item>
+        <item>Casado</item>
+    </string-array>
+
+
+
 </resources>

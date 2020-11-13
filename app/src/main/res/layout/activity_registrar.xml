@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrarActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noyh"
+            android:text="Crear Cuenta!"
+            android:textColor="@color/intro_title_color"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noyh"
+            android:text="Para ver tu expediente clinico y agendar citas!"
+            android:textColor="@color/intro_description_color"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <EditText
+            android:id="@+id/nameText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Nombre De Usuario"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+        <EditText
+            android:id="@+id/emailText3"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Nombres"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/muniSpinner" />
+
+        <EditText
+            android:id="@+id/nombreText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Nombres"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/muniSpinner" />
+
+        <EditText
+            android:id="@+id/trabajoText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Centro de Trabajo"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/estadoCivilSpinner" />
+
+        <EditText
+            android:id="@+id/ocupacionText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Ocupacion"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trabajoText" />
+
+        <EditText
+            android:id="@+id/telefonoText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Telefono"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ocupacionText" />
+
+        <EditText
+            android:id="@+id/celularText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Celular"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/telefonoText" />
+
+
+        <Spinner
+            android:id="@+id/estadoCivilSpinner"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edadText"
+            ></Spinner>
+
+        <EditText
+            android:id="@+id/apellidoText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Apellidos"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailText3" />
+
+        <EditText
+            android:id="@+id/nacimientoText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Fecha de Nacimiento"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sexoSpinner" />
+
+        <EditText
+            android:id="@+id/edadText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Edad"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nacimientoText" />
+
+        <EditText
+            android:id="@+id/emailText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+        <EditText
+            android:id="@+id/passwordText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/pass"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Contraseña"
+            android:inputType="textPersonName"
+            android:paddingStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailText" />
+
+        <Button
+            android:id="@+id/buttonCreateAccount"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/stylebtn"
+            android:layout_marginBottom="62dp"
+            android:text="Crear Cuenta"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/celularText" />
+
+        <Spinner
+            android:id="@+id/muniSpinner"
+
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+
+        <Spinner
+            android:id="@+id/sexoSpinner"
+
+            android:layout_width="379dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/apellidoText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/nameText"
         android:layout_width="381dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/PassText"
         android:layout_width="379dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
@@ -84,10 +84,10 @@
         android:paddingStart="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/BtnIniciarSesion"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -96,10 +96,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/PassText" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/TextCrearCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -110,6 +110,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/BtnIniciarSesion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

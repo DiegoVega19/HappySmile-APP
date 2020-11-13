@@ -43,8 +43,8 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         if (restorePrefData()) {
 
-            Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
-            startActivity(mainActivity);
+            Intent I = new Intent(getApplicationContext(),LoginActivity.class );
+            startActivity(I);
             finish();
 
 
@@ -110,10 +110,10 @@ public class ViewPagerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                //Abrir Main Activity
+                //Abrir Login Activity
 
-                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(mainActivity);
+                Intent I = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(I);
                 //guardamos booleano para que cuando el usuario corra la app otra vez de un solo pase al login
                //Para eso usamos sharedPreferences
                 savePrefsData();

@@ -127,7 +127,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/noyh"
-                android:text="Expedientes"
+                android:text="Tratamientos"
                 android:textColor="@color/intro_title_color"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +140,7 @@
                 android:layout_marginTop="72dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/file" />
+                app:srcCompat="@drawable/pills" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

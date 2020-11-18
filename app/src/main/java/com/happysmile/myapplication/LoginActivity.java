@@ -3,7 +3,9 @@ package com.happysmile.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "data";
     TextView textcuenta;
     EditText textemail,textpass;
     Button btnentrar;
@@ -27,11 +30,19 @@ public class LoginActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+        String datos = pref.getString("DIEGO",null);
+        if(datos!=null)
+        {
+            Intent I = new Intent(getApplicationContext(),ActivityMainMenuPaciente.class );
+            startActivity(I);
+        }
         setContentView(R.layout.activity_login);
         textcuenta = findViewById(R.id.TextCrearCuenta);
         textemail = findViewById(R.id.nameText);
         textpass = findViewById(R.id.PassText);
         btnentrar = findViewById(R.id.BtnIniciarSesion);
+
         textcuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,10 +56,17 @@ public class LoginActivity extends AppCompatActivity {
         btnentrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginRequest loginRequest = new LoginRequest();
-                loginRequest.setEmail(textemail.getText().toString());
-                loginRequest.setPassword(textpass.getText().toString());
-                loginUser(loginRequest);
+                if(TextUtils.isEmpty(textemail.getText().toString()) || TextUtils.isEmpty(textpass.getText()))
+                {
+                    Toast.makeText(LoginActivity.this, "El Email y La Contraseña Son Requeridos", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    LoginRequest loginRequest = new LoginRequest();
+                    loginRequest.setEmail(textemail.getText().toString());
+                    loginRequest.setPassword(textpass.getText().toString());
+                    loginUser(loginRequest);
+                }
             }
         });
 
@@ -65,8 +83,19 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     LoginResponse loginResponse = response.body();
-                    Toast.makeText(LoginActivity.this, "Hola"+response.body().getPaciente().getNombre(), Toast.LENGTH_SHORT).show();
-
+                    String nombre;
+                    nombre = response.body().getUser().getName();
+                   SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+                   SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("DIEGO",nombre);
+                    editor.commit();
+                    Intent intent = new Intent(LoginActivity.this, ActivityMainMenuPaciente.class);
+                    //intent.putExtra(EXTRA_MESSAGE,nombre);
+                    startActivity(intent);
+                    //startActivity(new Intent(LoginActivity.this,ActivityMainMenuPaciente.class).putExtra("datos",loginResponse));
+                    finish();
+                   // Toast.makeText(LoginActivity.this, "Hola"+nombre, Toast.LENGTH_SHORT).show();
+                    //  RECORDAR ALMACENAR EN SHARED PREFERENCES
                 }
                 else
                 {
@@ -83,4 +112,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 }

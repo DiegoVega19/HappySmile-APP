@@ -18,7 +18,8 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent i = new Intent(SplashActivity.this,ViewPagerActivity.class);
                 startActivity(i);
+                finish();
             }
-        },5000);
+        },3000);
     }
 }

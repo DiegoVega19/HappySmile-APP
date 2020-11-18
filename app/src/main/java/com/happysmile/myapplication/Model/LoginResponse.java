@@ -2,14 +2,14 @@ package com.happysmile.myapplication.Model;
 
 import java.io.Serializable;
 
-public class LoginResponse {
+public class LoginResponse implements  Serializable {
     private String access_token;
-    private  Paciente paciente;
+    private  User user;
 
 
     public LoginResponse(String access_token, User user) {
         this.access_token = access_token;
-        this.paciente = paciente;
+        this.user = user;
     }
 
 
@@ -17,7 +17,7 @@ public class LoginResponse {
         return access_token;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public User getUser() {
+        return user;
     }
 }

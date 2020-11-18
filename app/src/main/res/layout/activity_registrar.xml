@@ -180,6 +180,7 @@
 
 
         <Spinner
+            android:background="@drawable/spiner_style"
             android:id="@+id/estadoCivilSpinner"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -216,6 +217,7 @@
         <EditText
             android:id="@+id/nacimientoText"
             android:layout_width="0dp"
+            android:focusableInTouchMode="false"
             android:layout_height="56dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -309,7 +311,7 @@
 
         <Spinner
             android:id="@+id/muniSpinner"
-
+            android:background="@drawable/spiner_style"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="16dp"
@@ -322,7 +324,7 @@
 
         <Spinner
             android:id="@+id/sexoSpinner"
-
+            android:background="@drawable/spiner_style"
             android:layout_width="379dp"
             android:layout_height="56dp"
             android:layout_marginTop="16dp"

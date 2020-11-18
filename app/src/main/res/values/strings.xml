@@ -2,15 +2,15 @@
     <string name="app_name">Happy Smile</string>
 
     <string-array name="sexo">
-        <item>Masculino</item>
-        <item>Femenino</item>
+        <item>Sexo</item>
+        <item>M</item>
+        <item>F</item>
     </string-array>
 
     <string-array name="estadocivil">
-        <item>Soltero</item>
-        <item>Casado</item>
+        <item>Solter@</item>
+        <item>Casad@</item>
     </string-array>
-
 
 
 </resources>

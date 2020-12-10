@@ -11,6 +11,7 @@ public class User {
     public String updated_at;
 
 
+
     public User(int id, String name, String email, String email_verified_at, String created_at, String updated_at) {
         this.id = id;
         this.name = name;
@@ -19,6 +20,7 @@ public class User {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
+
 
     public int getId() {
         return id;

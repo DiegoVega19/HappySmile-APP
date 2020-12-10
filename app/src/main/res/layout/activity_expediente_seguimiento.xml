@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ExpedienteSeguimientoActivity">
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/Header"
         android:layout_width="match_parent"
         android:layout_height="116dp"
         android:layout_marginTop="1dp"
@@ -78,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/Header" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"

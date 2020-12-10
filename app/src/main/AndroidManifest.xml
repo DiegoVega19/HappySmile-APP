@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EditarPerfilActivity"></activity>
+        <activity android:name=".PacienteEstadoCitaActivity"></activity>
+        <activity android:name=".SolicitarCitaActivity" />
+        <activity android:name=".PacienteCitaActivity" />
+        <activity android:name=".EditarPerfilActivity" />
         <activity android:name=".RegistrarActivity" />
         <activity android:name=".ActivityMainMenuPaciente" />
         <activity android:name=".PerfilActivity" />

@@ -100,6 +100,8 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
     }
 
     private void Obteneridmunicipio() {
+
+
          Call<List<Municipio>> lstid = service.getid(Muni);
          lstid.enqueue(new Callback<List<Municipio>>() {
              @Override
@@ -114,8 +116,6 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
                         int id = municipio.getId();
                        //  Toast.makeText(RegistrarActivity.this, "Mi id de municipio es:"+id, Toast.LENGTH_SHORT).show();
                          IdMuni = id;
-
-
                      }
 
                  }

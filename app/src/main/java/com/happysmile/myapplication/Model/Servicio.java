@@ -1,9 +1,9 @@
 package com.happysmile.myapplication.Model;
 
-public class Municipio {
-
-    public Integer id;
+public class Servicio {
+     public Integer id;
     public String nombre;
+
     public String getNombre() {
         return nombre;
     }
@@ -12,26 +12,19 @@ public class Municipio {
         this.nombre = nombre;
     }
 
-
-    public Municipio(String nombre) {
+    public Servicio(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String toString() {
-        return nombre;
-    }
-
-    public Municipio(Integer id) {
-        this.id = id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getId() {
         return id;
     }
 
-    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String toString() {
+        return nombre;
+    }
 }

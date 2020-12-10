@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void loginUser(LoginRequest loginRequest)
     {
-        Call<LoginResponse>loginResponseCall = ApiClient. getService().login(loginRequest);
+        Call<LoginResponse>loginResponseCall = ApiClient.getService().login(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -83,11 +83,13 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     LoginResponse loginResponse = response.body();
-                    String nombre;
+                    String nombre, correo;
                     nombre = response.body().getUser().getName();
+                    correo = response.body().getUser().getEmail();
                    SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
                    SharedPreferences.Editor editor = pref.edit();
                     editor.putString("DIEGO",nombre);
+                    editor.putString("Correo",correo);
                     editor.commit();
                     Intent intent = new Intent(LoginActivity.this, ActivityMainMenuPaciente.class);
                     //intent.putExtra(EXTRA_MESSAGE,nombre);

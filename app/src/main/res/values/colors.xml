@@ -18,5 +18,10 @@
     <!-- colors for header -->
     <color name="header_color">#29B6F6</color>
 
-
+    <!-- colors for statement -->
+    <color name="NA_color">#FF8A8A</color>
+    <color name="NF_color">#F2FFA0</color>
+    <color name="Rev_color">#918FFC</color>
+    <color name="Ap_color">#80F3D1</color>
+    <color name="Canc_color">#FF5E5E</color>
 </resources>

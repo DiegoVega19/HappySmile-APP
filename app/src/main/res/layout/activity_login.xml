@@ -67,24 +67,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <EditText
-        android:id="@+id/PassText"
-        android:layout_width="379dp"
-        android:layout_height="56dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
-        android:background="@drawable/input_style"
-        android:drawableStart="@drawable/pass"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:fontFamily="@font/noyh"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:paddingStart="2dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+        app:layout_constraintTop_toBottomOf="@+id/nameText"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PassText"
+            android:layout_width="381dp"
+            android:layout_height="56dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/pass"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/noyh"
+            android:hint="Contraseña"
+            android:inputType="textPassword" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/BtnIniciarSesion"
@@ -96,17 +106,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PassText" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <TextView
         android:id="@+id/TextCrearCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/noyh"
-        android:textSize="20sp"
-        android:textColor="@color/intro_title_color"
         android:text="¿No tienes cuenta? Crear Una"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -50,6 +51,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
     View v;
     public  int IDSERV;
     private static final String TAG = "Datos";
+    Boolean NuevaCita = false;
     String servicioTexto;
     Button btnguardarcita;
     Calendar calendar;
@@ -118,7 +120,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
         final AlertDialog dialog = builder.create();
         dialog.show();
         TextView txt = view.findViewById(R.id.text_dialog);
-        txt.setText("Estas seguro que desea Agendar una nueva cita?");
+        txt.setText("¿Estas seguro que desea Agendar una nueva cita?");
         Button btnReintentar = view.findViewById(R.id.btnReintentar);
         btnReintentar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +163,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                Toast.makeText(SolicitarCitaActivity.this, "Tocado cancelar", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SolicitarCitaActivity.this, "Tocado cancelar", Toast.LENGTH_SHORT).show();
                 //Recordar Borrar Despues
             }
         });
@@ -174,6 +176,12 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
             public void onResponse(Call<CitaResponse> call, Response<CitaResponse> response) {
                 if (response.isSuccessful())
                 {
+                   int cantCita = 1;
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putInt("TotalCita",cantCita);
+                    editor.putBoolean("CitaAgregada",NuevaCita);
+                    editor.commit();
                     mostrarSnackbarSatisfactorio();
                 }
                 else
@@ -195,7 +203,8 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
                 .setAction("Ver", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(SolicitarCitaActivity.this, "Estado de cita en progreso", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(SolicitarCitaActivity.this,PacienteEstadoCitaActivity.class);
+                        startActivity(i);
                     }
                 });
         snackbar.show();

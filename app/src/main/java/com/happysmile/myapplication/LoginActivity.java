@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.happysmile.myapplication.Api.ApiClient;
 import com.happysmile.myapplication.Model.LoginRequest;
 import com.happysmile.myapplication.Model.LoginResponse;
@@ -24,6 +25,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "data";
     TextView textcuenta;
+    View v;
     EditText textemail,textpass;
     Button btnentrar;
     @Override
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(I);
         }
         setContentView(R.layout.activity_login);
+        v =  findViewById(android.R.id.content);
         textcuenta = findViewById(R.id.TextCrearCuenta);
         textemail = findViewById(R.id.nameText);
         textpass = findViewById(R.id.PassText);
@@ -101,8 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    String message = "Un error a ocurrido";
-                    Toast.makeText(LoginActivity.this,message, Toast.LENGTH_LONG).show();
+                    mostrarSnackbarInCorrect();
                 }
             }
 
@@ -115,4 +117,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public  void mostrarSnackbarInCorrect()
+    {
+        Snackbar snackbar = Snackbar.make(v,"La Contraseña o el Email Son Incorrectos!!!",Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
 }

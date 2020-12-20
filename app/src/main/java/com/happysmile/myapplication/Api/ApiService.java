@@ -2,6 +2,8 @@ package com.happysmile.myapplication.Api;
 
 
 import com.google.gson.JsonArray;
+import com.happysmile.myapplication.Model.CancelRequest;
+import com.happysmile.myapplication.Model.Cita;
 import com.happysmile.myapplication.Model.CitaRequest;
 import com.happysmile.myapplication.Model.CitaResponse;
 import com.happysmile.myapplication.Model.LoginRequest;
@@ -21,7 +23,9 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -66,5 +70,21 @@ public interface ApiService {
     @GET("getidserv/{nombre}")
     Call<List<Servicio>> getidserv(@Path("nombre") String nombreServ);
 
+    @GET("getCita/{id}")
+    Call<Cita> getcitaEstat(@Path("id") int IdPaciente);
 
+    @GET("getCantidadCita/{pasiente_id}")
+    Call<Cita> getCantidadCita(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getEstadoCita/{pasiente_id}")
+    Call<Cita> getEstadoUltimaCita(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getpaciente/{id}")
+    Call<Paciente> getPacData(@Path("id") int IdPaciente);
+
+    @Headers({
+            "Content-Type: application/json"
+    })
+    @PATCH("cancelarCita/{id}")
+    Call<CancelRequest> cancCita(@Path("id") int idCita, @Body CancelRequest cancelRequest);
 }

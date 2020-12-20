@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.happysmile.myapplication.Api.ApiClient;
 import com.happysmile.myapplication.Api.ApiService;
 import com.happysmile.myapplication.Model.LoginResponse;
@@ -36,6 +37,7 @@ import retrofit2.Response;
 public class RegistrarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner spinnersexo, spinnerestadocivil, spinnnermuni;
+    View v;
     Calendar calendar;
     DatePickerDialog datePickerDialog;
     EditText username, email, pass, nombres, apellidos, fechanac, edad, centroTrabajo, ocupacion, telefono, celular;
@@ -53,6 +55,7 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
         username = findViewById(R.id.nameText);
+        v =  findViewById(android.R.id.content);
         email = findViewById(R.id.emailText);
         pass = findViewById(R.id.passwordText);
         nombres = findViewById(R.id.nombreText);
@@ -256,15 +259,13 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
           public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if(response.isSuccessful())
                 {
-                    String message = "Registrado Con Exito";
-                    Toast.makeText(RegistrarActivity.this,message, Toast.LENGTH_LONG).show();
+                    mostrarSnackbarCorrect();
                     Intent i = new Intent(RegistrarActivity.this,LoginActivity.class);
                     finish();
                 }
                 else
                 {
-                    String message = "Un error a ocurrido";
-                    Toast.makeText(RegistrarActivity.this,message, Toast.LENGTH_LONG).show();
+                    mostrarSnackbarCorrect();
                 }
           }
 
@@ -276,5 +277,16 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
       });
   }
 
-
+    public  void mostrarSnackbarAlgosaliomal()
+    {
+        Snackbar snackbar = Snackbar.make(v,"Registro no guardado, Algo salio mal!!!",Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
+
+    public  void mostrarSnackbarCorrect()
+    {
+        Snackbar snackbar = Snackbar.make(v,"Usuario Registrado Con Exito!!!",Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+}

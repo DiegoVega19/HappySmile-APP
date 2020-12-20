@@ -17,6 +17,8 @@ public class Paciente {
     public String created_at;
     public String updated_at;
 
+
+
     public Paciente(int id, int municipio_id, String nombre, String apellido, String sexo, String fechaDeNacimiento, int edad, String estadoCivil, String centroDeTrabajo, String ocupacion, String telefono, String celular, String email, String created_at, String updated_at) {
         this.id = id;
         this.municipio_id = municipio_id;

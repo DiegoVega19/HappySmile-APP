@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetalleCitaActivity">
+    tools:context=".PacienteTratamientoExpediente">
 
     <FrameLayout
         android:id="@+id/Header"
@@ -18,10 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/bienvenida"
@@ -30,22 +27,21 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/noyh"
-                android:text="Detalle Citas"
-
+                android:text="Tratamiento"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/NombreText"
+                android:id="@+id/letra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/noyh"
                 android:text="Happy Smile"
                 android:textColor="@color/intro_title_color"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bienvenida" />
 
@@ -64,145 +60,152 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/doc_profile" />
+                    android:src="@drawable/paciente" />
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </FrameLayout>
-    <EditText
-        android:id="@+id/CitanombreText"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/input_style"
-        android:drawableStart="@drawable/user"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:focusableInTouchMode="false"
-        android:fontFamily="@font/noyh"
-        android:hint="Nombre y Apellido"
-        android:inputType="textPersonName"
-        android:paddingStart="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-    <EditText
-        android:id="@+id/CitaServiceEditText"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/input_style"
-        android:drawableStart="@drawable/ic_company"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:focusableInTouchMode="false"
-        android:fontFamily="@font/noyh"
-        android:hint="Servicio"
-        android:inputType="textPersonName"
-        android:paddingStart="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-    <EditText
-        android:id="@+id/CitaFechaEditText"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/input_style"
-        android:drawableStart="@drawable/ic_calendar"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:focusableInTouchMode="false"
-        android:fontFamily="@font/noyh"
-        android:hint="Fecha"
-        android:inputType="textPersonName"
-        android:paddingStart="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-    <EditText
-        android:id="@+id/CitaHoraEditText"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/input_style"
-        android:drawableStart="@drawable/ic_hour"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:focusableInTouchMode="false"
-        android:fontFamily="@font/noyh"
-        android:hint="Hora"
-        android:inputType="textPersonName"
-        android:paddingStart="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/noyh"
-        android:text="Nombre y Apellidos"
+        android:text="Tratamiento de Expediente"
         android:textColor="@color/intro_title_color"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Header" />
 
-    <TextView
-        android:id="@+id/textView25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+    <EditText
+        android:id="@+id/TratFechaText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
         android:fontFamily="@font/noyh"
-        android:text="Servicio Del Paciente"
-        android:textColor="@color/intro_title_color"
-        android:textSize="20sp"
+        android:hint="Fecha y Hora"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CitanombreText" />
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+    <EditText
+        android:id="@+id/TratFechaProxima"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Fecha y Hora"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/TratFechaText"
+        app:layout_constraintTop_toTopOf="@+id/TratFechaText" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/noyh"
-        android:text="Fecha Propuesta"
+        android:text="Fecha"
         android:textColor="@color/intro_title_color"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CitaServiceEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/noyh"
+        android:text="Fecha Ultima Consulta"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/noyh"
-        android:text="Hora Propuesta"
+        android:text="Descripcion"
         android:textColor="@color/intro_title_color"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CitaFechaEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/TratFechaText" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/noyh"
+        android:text="Observacion"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mensajeDescrip" />
+
+    <EditText
+        android:id="@+id/mensajeDescrip"
+        android:paddingStart="3dp"
+        android:layout_width="379dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/input_style"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_email"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:inputType="text|textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <EditText
+        android:paddingStart="3dp"
+        android:id="@+id/mensajeObservacion"
+        android:layout_width="379dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/input_style"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_email"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:inputType="text|textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

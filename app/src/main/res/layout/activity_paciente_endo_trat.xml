@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CitasActivity">
-
+    tools:context=".PacienteEndoTratActivity">
     <FrameLayout
         android:id="@+id/Header"
         android:layout_width="match_parent"
@@ -27,22 +26,21 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/noyh"
-                android:text="Citas"
-
+                android:text="Tratamiento"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/NombreText"
+                android:id="@+id/letra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/noyh"
                 android:text="Happy Smile"
                 android:textColor="@color/intro_title_color"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bienvenida" />
 
@@ -61,13 +59,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
-                   android:src="@drawable/doc_profile" />
+                    android:src="@drawable/paciente" />
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </FrameLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/DrefreshE"
+        android:id="@+id/refreshE"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +77,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RecyclerCitasDoc"
+                android:id="@+id/RecyclerEndodoncias"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -95,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:fontFamily="@font/noyh"
-                android:text="Calendario de Citas"
+                android:text="Lista de Endodoncias"
                 android:textColor="@color/intro_title_color"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +101,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

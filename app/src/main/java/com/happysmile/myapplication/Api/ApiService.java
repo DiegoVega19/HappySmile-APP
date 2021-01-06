@@ -6,13 +6,23 @@ import com.happysmile.myapplication.Model.CancelRequest;
 import com.happysmile.myapplication.Model.Cita;
 import com.happysmile.myapplication.Model.CitaRequest;
 import com.happysmile.myapplication.Model.CitaResponse;
+import com.happysmile.myapplication.Model.Doctor;
+import com.happysmile.myapplication.Model.DoctorCita;
+import com.happysmile.myapplication.Model.DoctorCitaResponse;
+import com.happysmile.myapplication.Model.EndodonciaResponse;
 import com.happysmile.myapplication.Model.LoginRequest;
 import com.happysmile.myapplication.Model.LoginResponse;
 import com.happysmile.myapplication.Model.Municipio;
 import com.happysmile.myapplication.Model.Paciente;
 import com.happysmile.myapplication.Model.RegisterRequest;
 import com.happysmile.myapplication.Model.RegisterResponse;
+import com.happysmile.myapplication.Model.Rol;
+import com.happysmile.myapplication.Model.SeguimientoResponse;
 import com.happysmile.myapplication.Model.Servicio;
+import com.happysmile.myapplication.Model.TotalResponse;
+import com.happysmile.myapplication.Model.TratamientoEndodoncia;
+import com.happysmile.myapplication.Model.TratamientoExpediente;
+import com.happysmile.myapplication.Model.TratamientoSeguimiento;
 
 import java.util.List;
 
@@ -87,4 +97,45 @@ public interface ApiService {
     })
     @PATCH("cancelarCita/{id}")
     Call<CancelRequest> cancCita(@Path("id") int idCita, @Body CancelRequest cancelRequest);
+
+    @GET("getExpTratamiento/{pasiente_id}")
+    Call<TratamientoExpediente> getTratExp(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getSeguimiento/{pasiente_id}")
+    Call<SeguimientoResponse> getSeg(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getSegTratamiento/{seguimiendo_id}")
+    Call<TratamientoSeguimiento> getTratSeg(@Path("seguimiendo_id") int IdSeguimiento);
+
+    @GET("getEndodoncia/{pasiente_id}")
+    Call<EndodonciaResponse> getEndo(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getEndodonciaTrat/{endodoncia_id}")
+   Call<TratamientoEndodoncia> getTratEndo(@Path("endodoncia_id") int IdTratamiento);
+
+    @GET("getCantidadSeg/{pasiente_id}")
+    Call<TotalResponse> getSegCount(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getCantidadEndo/{pasiente_id}")
+    Call<TotalResponse> getEndoCount(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getCantidadExp/{pasiente_id}")
+    Call<TotalResponse> getExpCount(@Path("pasiente_id") int IdPaciente);
+
+    @GET("getRol/{email}")
+    Call<Rol> getUserRole(@Path("email") String emailPac);
+
+    //Metodos para el doctor
+    @GET("getDoctorData/{email}")
+    Call<Doctor> getDoctorData(@Path("email") String emailPac);
+
+    @GET("getDoctorCitas/{doctors_id}")
+    Call<DoctorCitaResponse> getDoctorCitas(@Path("doctors_id") int IdDoctor);
+
+    @GET("getCitaUser/{cita_id}")
+    Call<DoctorCita> getUserCitas(@Path("cita_id") int IdCita);
+
+    @GET("getDoctorCountCitas/{doctors_id}")
+    Call<DoctorCita> getCountDoctorC(@Path("doctors_id") int IdDoctor);
+
 }

@@ -13,7 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PacienteEstadoCitaActivity"></activity>
+        <activity android:name=".DoctorCitasMenuActivity"></activity>
+        <activity android:name=".PacienteEndoTratDetalleActivity" />
+        <activity android:name=".PacienteEndoTratActivity" />
+        <activity android:name=".PacienteTraSeguiDetalleActivity" />
+        <activity android:name=".PacienteTratamientoSeguimientoActivity" />
+        <activity android:name=".PacienteTratamientoExpediente" />
+        <activity android:name=".PacienteTratamientoMenu" />
+        <activity android:name=".PacienteEstadoCitaActivity" />
         <activity android:name=".SolicitarCitaActivity" />
         <activity android:name=".PacienteCitaActivity" />
         <activity android:name=".EditarPerfilActivity" />

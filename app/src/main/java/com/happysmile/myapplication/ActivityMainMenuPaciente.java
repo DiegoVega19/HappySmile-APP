@@ -28,7 +28,7 @@ public class ActivityMainMenuPaciente extends AppCompatActivity {
     String CorrePaciente;
     LoginResponse loginResponse;
     TextView username, bienvenida;
-    CardView cardPerfil, cardCitas;
+    CardView cardPerfil, cardCitas, cardTratamientos;
     private ApiService service = ApiClient.getRetrofit().create(ApiService.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class ActivityMainMenuPaciente extends AppCompatActivity {
         bienvenida = findViewById(R.id.bienvenida);
         cardPerfil = findViewById(R.id.PerfilCard);
         cardCitas = findViewById(R.id.Citascard);
+        cardTratamientos = findViewById(R.id.TratamientosCard);
 //        Intent intent = getIntent();
 //        String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
 //        nombre.setText(message);
@@ -56,6 +57,13 @@ public class ActivityMainMenuPaciente extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ActivityMainMenuPaciente.this,PacienteCitaActivity.class);
+                startActivity(i);
+            }
+        });
+        cardTratamientos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ActivityMainMenuPaciente.this,PacienteTratamientoMenu.class);
                 startActivity(i);
             }
         });

@@ -1,11 +1,19 @@
 package com.happysmile.myapplication.Model;
 
-public class Endodoncia {
-    public  int id;
-    public int pasiente_id;
-    public String fecha;
-    public String nombre;
-    public String apellido;
+public class Expediente {
+    private int id;
+    private int pasiente_id;
+    private String fecha;
+    private String nombre;
+    private String apellido;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getPasiente_id() {
         return pasiente_id;
@@ -13,6 +21,14 @@ public class Endodoncia {
 
     public void setPasiente_id(int pasiente_id) {
         this.pasiente_id = pasiente_id;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public String getNombre() {
@@ -29,21 +45,5 @@ public class Endodoncia {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 }

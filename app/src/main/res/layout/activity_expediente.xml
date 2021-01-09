@@ -71,7 +71,7 @@
     </FrameLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
+        android:id="@+id/cardExpPrin"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginStart="12dp"
@@ -114,7 +114,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
+        android:id="@+id/cardExpSeg"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginStart="12dp"
@@ -125,7 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+        app:layout_constraintTop_toBottomOf="@+id/cardExpPrin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -157,6 +157,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardExpEnd"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginStart="12dp"
@@ -167,7 +168,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4" >
+        app:layout_constraintTop_toBottomOf="@+id/cardExpSeg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

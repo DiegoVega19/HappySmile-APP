@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DoctorExpDetalleActivity">
+
+    <FrameLayout
+        android:id="@+id/Header"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="@color/header_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/bienvenida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/noyh"
+                android:text="Expediente"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/letra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noyh"
+                android:text="Happy Smile"
+                android:textColor="@color/intro_title_color"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bienvenida" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/doc_profile" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tituloText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noyh"
+        android:text="Expediente de Username"
+        android:textColor="@color/intro_title_color"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Header" />
+
+    <EditText
+        android:id="@+id/IdExpText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Id"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+    <EditText
+        android:id="@+id/pMaxText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Presion Max"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/pulsoText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Pulso"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/tempBucalText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Temperatura Bucal"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <EditText
+        android:id="@+id/tallaText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Talla"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+    <EditText
+        android:id="@+id/factorText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Factor"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+    <EditText
+        android:id="@+id/FechaExpText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Fecha"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IdExpText"
+        app:layout_constraintTop_toTopOf="@+id/IdExpText" />
+
+    <EditText
+        android:id="@+id/pMinText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Presion Min"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/IdExpText"
+        app:layout_constraintTop_toTopOf="@+id/pMaxText" />
+
+    <EditText
+        android:id="@+id/frecuenciaResText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Frecuencia "
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/IdExpText"
+        app:layout_constraintTop_toTopOf="@+id/pulsoText" />
+
+    <EditText
+        android:id="@+id/pesoText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Peso"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/IdExpText"
+        app:layout_constraintTop_toTopOf="@+id/tempBucalText" />
+
+    <EditText
+        android:id="@+id/grupoSangText"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/input_style"
+        android:drawableStart="@drawable/ic_datetime"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noyh"
+        android:hint="Grupo Sanguineo"
+        android:inputType="textPersonName"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/IdExpText"
+        app:layout_constraintTop_toTopOf="@+id/tallaText" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/noyh"
+        android:text="Id Expediente"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloText" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noyh"
+        android:text="Presion Maxima"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdExpText" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noyh"
+        android:text="Frecuencia Pulso"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pMaxText" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noyh"
+        android:text="Temperatura Bucal"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pulsoText" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noyh"
+        android:text="Temperatura Bucal"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pulsoText" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noyh"
+        android:text="Talla"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempBucalText" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noyh"
+        android:text="Factor"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tallaText" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/noyh"
+        android:text="Fecha"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloText" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/noyh"
+        android:text="Presion Minima"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FechaExpText" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/noyh"
+        android:text="Frecuencia Respiratoria"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pMinText" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/noyh"
+        android:text="Peso"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frecuenciaResText" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/noyh"
+        android:text="Grupo Sanguineo"
+        android:textColor="@color/intro_title_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pesoText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

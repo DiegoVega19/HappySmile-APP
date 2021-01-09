@@ -118,7 +118,7 @@ public class PacienteTratamientoMenu extends AppCompatActivity {
 
               if(SegCount==0)
               {
-                String dato = "Seguimiento";
+                String dato = "Seguimientos";
                 MostrarSnackbarEstado(dato);
               }
               else
@@ -136,7 +136,7 @@ public class PacienteTratamientoMenu extends AppCompatActivity {
             public void onClick(View view) {
                 if (ExpCount==0)
                 {
-                    String dato = "Expediente";
+                    String dato = "Expedientes";
                     MostrarSnackbarEstado(dato);
                 }
                 else {
@@ -154,7 +154,7 @@ public class PacienteTratamientoMenu extends AppCompatActivity {
 
                 if (EndoCount==0)
                 {
-                    String dato = "Endodoncia";
+                    String dato = "Endodoncias";
                     MostrarSnackbarEstado(dato);
                 }
                 else {

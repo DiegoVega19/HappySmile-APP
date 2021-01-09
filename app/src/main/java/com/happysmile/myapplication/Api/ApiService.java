@@ -9,7 +9,10 @@ import com.happysmile.myapplication.Model.CitaResponse;
 import com.happysmile.myapplication.Model.Doctor;
 import com.happysmile.myapplication.Model.DoctorCita;
 import com.happysmile.myapplication.Model.DoctorCitaResponse;
+import com.happysmile.myapplication.Model.EndodonciaDetalle;
 import com.happysmile.myapplication.Model.EndodonciaResponse;
+import com.happysmile.myapplication.Model.ExpedienteDetalle;
+import com.happysmile.myapplication.Model.ExpedienteResponse;
 import com.happysmile.myapplication.Model.LoginRequest;
 import com.happysmile.myapplication.Model.LoginResponse;
 import com.happysmile.myapplication.Model.Municipio;
@@ -17,6 +20,7 @@ import com.happysmile.myapplication.Model.Paciente;
 import com.happysmile.myapplication.Model.RegisterRequest;
 import com.happysmile.myapplication.Model.RegisterResponse;
 import com.happysmile.myapplication.Model.Rol;
+import com.happysmile.myapplication.Model.SeguimientoDetalle;
 import com.happysmile.myapplication.Model.SeguimientoResponse;
 import com.happysmile.myapplication.Model.Servicio;
 import com.happysmile.myapplication.Model.TotalResponse;
@@ -137,5 +141,41 @@ public interface ApiService {
 
     @GET("getDoctorCountCitas/{doctors_id}")
     Call<DoctorCita> getCountDoctorC(@Path("doctors_id") int IdDoctor);
+
+    @GET("getExpedientes")
+    Call<ExpedienteResponse> getExp();
+
+    @GET("getUserSeg")
+    Call<SeguimientoResponse> getDocSeg();
+
+    @GET("getUserEndo")
+    Call<EndodonciaResponse> getDocEndo();
+
+    @GET("getExpDetail/{expediente_id}")
+    Call<ExpedienteDetalle> getExpDetail(@Path("expediente_id") int IdExp);
+
+    @GET("getSeguimientoByUser/{pasiente_id}")
+    Call<SeguimientoResponse> getSegByUser(@Path("pasiente_id") int IdPac);
+
+    @GET("getEndodonciaByUser/{pasiente_id}")
+    Call<EndodonciaResponse> getEndoByUser(@Path("pasiente_id") int IdPac);
+
+    @GET("getDetalleSeg/{seguimiento_id}")
+    Call<SeguimientoDetalle> getSegDetalle(@Path("seguimiento_id") int IdSeg);
+
+    @GET("getDetalleEndo/{endodoncia_id}")
+    Call<EndodonciaDetalle> getEndoDetalle(@Path("endodoncia_id") int IdEndo);
+
+    @GET("getConteoEndo")
+    Call<TotalResponse> gettotalEndodoncias();
+
+    @GET("getConteoExp")
+    Call<TotalResponse> getTotalExpedientes();
+
+    @GET("getConteoSeg")
+    Call<TotalResponse> getTotalSeguimientos();
+
+
+
 
 }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,21 +14,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.happysmile.myapplication.Model.Endodoncia;
 import com.happysmile.myapplication.Model.Seguimiento;
 import com.happysmile.myapplication.Model.User;
 import com.happysmile.myapplication.PacienteTraSeguiDetalleActivity;
 import com.happysmile.myapplication.R;
 import com.happysmile.myapplication.SeguimientosUserActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserSeguimientoAdapter extends RecyclerView.Adapter<UserSeguimientoAdapter.ViewHolder> {
+public class UserSeguimientoAdapter extends RecyclerView.Adapter<UserSeguimientoAdapter.ViewHolder> implements Filterable {
+   private List<Seguimiento> filterList;
     private List<Seguimiento> seguimientoList;
     private Context context;
 
     public UserSeguimientoAdapter(Context ApplicationContext, List<Seguimiento> seguimientos) {
         this.context = ApplicationContext;
         this.seguimientoList = seguimientos;
+        this.filterList = seguimientos;
     }
 
     @NonNull
@@ -38,14 +44,50 @@ public class UserSeguimientoAdapter extends RecyclerView.Adapter<UserSeguimiento
 
     @Override
     public void onBindViewHolder(@NonNull UserSeguimientoAdapter.ViewHolder holder, int position) {
-        holder.nombreText.setText(seguimientoList.get(position).getNombre() + " " + seguimientoList.get(position).getApellido());
-        holder.codigoText.setText("Codigo de Paciente: " + seguimientoList.get(position).getPasiente_id());
+        holder.nombreText.setText(filterList.get(position).getNombre() + " " + filterList.get(position).getApellido());
+        holder.codigoText.setText("Codigo de Paciente: " + filterList.get(position).getPasiente_id());
         holder.imagenPredefinida.setImageResource(R.drawable.card);
     }
 
     @Override
     public int getItemCount() {
-        return seguimientoList.size();
+        return filterList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String searchString = charSequence.toString();
+                if (searchString.isEmpty()) {
+
+                    filterList = seguimientoList;
+                }
+                else
+                {
+                    List<Seguimiento> tempFilteredList = new ArrayList<>();
+                    for (Seguimiento seguimiento :seguimientoList)
+                    {
+                        //Buscar Por id
+                        if(seguimiento.getNombre().toLowerCase().contains(searchString))
+                        {
+                            tempFilteredList.add(seguimiento);
+                        }
+                    }
+                    filterList = tempFilteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filterList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filterList = (List<Seguimiento>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

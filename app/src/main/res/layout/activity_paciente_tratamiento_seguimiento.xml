@@ -80,11 +80,11 @@
                 android:id="@+id/RecyclerSeguimientos"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView34" />
+                app:layout_constraintTop_toBottomOf="@+id/searchViewSegTrat" />
 
             <TextView
                 android:id="@+id/textView34"
@@ -99,6 +99,16 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <SearchView
+                android:id="@+id/searchViewSegTrat"
+                android:layout_width="0dp"
+                android:queryHint="Buscar"
+                android:iconifiedByDefault="false"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView34" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

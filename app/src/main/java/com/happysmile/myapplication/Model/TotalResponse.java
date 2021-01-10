@@ -4,6 +4,16 @@ public class TotalResponse {
      int totalExpedientes;
     int totalEndodoncias;
    int  totalSeguimientos;
+   int disponibilidad;
+
+
+    public int getDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(int disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
 
     public int getTotalExpedientes() {
         return totalExpedientes;

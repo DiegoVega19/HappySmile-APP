@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,16 +18,19 @@ import com.happysmile.myapplication.Model.Endodoncia;
 import com.happysmile.myapplication.PacienteEndoTratDetalleActivity;
 import com.happysmile.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class EndodonciaAdapter extends RecyclerView.Adapter<EndodonciaAdapter.ViewHolder>{
+public class EndodonciaAdapter extends RecyclerView.Adapter<EndodonciaAdapter.ViewHolder> implements Filterable {
     private List<Endodoncia> endodoncias;
+    private List<Endodoncia> filterList;
     private Context context;
 
     public EndodonciaAdapter(Context aplicationContext, List<Endodoncia> endodonciaList)
     {
         this.context = aplicationContext;
         this.endodoncias = endodonciaList;
+        this.filterList = endodonciaList;
     }
 
     @NonNull
@@ -37,14 +42,50 @@ public class EndodonciaAdapter extends RecyclerView.Adapter<EndodonciaAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.idText.setText("Codigo de Endodoncia: "+endodoncias.get(position).getId());
-        holder.FechaText.setText(endodoncias.get(position).getFecha());
+        holder.idText.setText("Codigo de Endodoncia: "+filterList.get(position).getId());
+        holder.FechaText.setText(filterList.get(position).getFecha());
         holder.imagenPredefinida.setImageResource(R.drawable.card_endo);
     }
 
     @Override
     public int getItemCount() {
-        return endodoncias.size();
+        return filterList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String searchString = charSequence.toString();
+                if (searchString.isEmpty()) {
+
+                  filterList = endodoncias;
+                }
+                else
+                {
+                    List<Endodoncia> tempFilteredList = new ArrayList<>();
+                    for (Endodoncia endodoncia :endodoncias)
+                    {
+                        //Buscar Por id
+                        if(Integer.toString(endodoncia.getId()).toLowerCase().contains(searchString))
+                        {
+                            tempFilteredList.add(endodoncia);
+                        }
+                    }
+                    filterList = tempFilteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filterList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filterList = (List<Endodoncia>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
 

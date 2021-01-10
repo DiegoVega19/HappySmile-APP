@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/Canc_color"
+        android:gravity="center"
+        android:padding="8dp"
+        android:src="@drawable/dialog_avatar" />
+
+    <TextView
+        android:id="@+id/text_dialogOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="42dp"
+        android:gravity="center"
+        android:text="TEXT"
+        android:fontFamily="@font/noyh"
+        android:textColor="@color/intro_title_color"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@color/Ap_color"
+            android:fontFamily="@font/noyh"
+            android:text="Aceptar"
+            android:textAllCaps="false"
+            android:textColor="@color/intro_title_color"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+</LinearLayout>

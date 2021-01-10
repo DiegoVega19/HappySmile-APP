@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.happysmile.myapplication.Adapters.ExpedientePrincipalAdapter;
@@ -24,6 +25,7 @@ import retrofit2.Response;
 public class ExpedienteSeguimientoActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refresh;
+    SearchView searchView;
     UserSeguimientoAdapter adapter;
     private RecyclerView recyclerView;
     @Override
@@ -47,7 +49,20 @@ public class ExpedienteSeguimientoActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
+        searchView = findViewById(R.id.searchViewDocSeg);
         getSeguimientos();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return  true;
+            }
+        });
     }
     private void getSeguimientos()
     {

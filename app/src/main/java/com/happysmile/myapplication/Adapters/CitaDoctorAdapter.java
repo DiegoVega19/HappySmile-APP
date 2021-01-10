@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,16 +19,19 @@ import com.happysmile.myapplication.Model.Endodoncia;
 import com.happysmile.myapplication.PacienteEndoTratDetalleActivity;
 import com.happysmile.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CitaDoctorAdapter extends RecyclerView.Adapter<CitaDoctorAdapter.ViewHolder> {
+public class CitaDoctorAdapter extends RecyclerView.Adapter<CitaDoctorAdapter.ViewHolder> implements Filterable {
     private List<DoctorCita> doctorCitas;
+    private List<DoctorCita> filterList;
     private Context context;
 
     public CitaDoctorAdapter(Context applicacionContext, List<DoctorCita> doctorCitaList)
     {
         this.context = applicacionContext;
         this.doctorCitas = doctorCitaList;
+        this.filterList = doctorCitaList;
     }
 
     @NonNull
@@ -38,14 +43,50 @@ public class CitaDoctorAdapter extends RecyclerView.Adapter<CitaDoctorAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull CitaDoctorAdapter.ViewHolder holder, int position) {
-        holder.nombreText.setText(doctorCitas.get(position).getNombre());
-        holder.datosTiempo.setText(doctorCitas.get(position).getFechaPropuesta()+"-"+doctorCitas.get(position).getHoraPropuesta());
+        holder.nombreText.setText(filterList.get(position).getNombre());
+        holder.datosTiempo.setText(filterList.get(position).getFechaPropuesta()+"-"+filterList.get(position).getHoraPropuesta());
         holder.imagenPredefinida.setImageResource(R.drawable.card);
     }
 
     @Override
     public int getItemCount() {
-        return doctorCitas.size();
+        return filterList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String searchString = charSequence.toString();
+                if (searchString.isEmpty()) {
+
+                    filterList = doctorCitas;
+                }
+                else
+                {
+                    List<DoctorCita> tempFilteredList = new ArrayList<>();
+                    for (DoctorCita doctorCita :doctorCitas)
+                    {
+                        //Buscar Por id
+                        if(doctorCita.getNombre().toLowerCase().contains(searchString))
+                        {
+                            tempFilteredList.add(doctorCita);
+                        }
+                    }
+                    filterList = tempFilteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filterList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filterList = (List<DoctorCita>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public  class ViewHolder extends  RecyclerView.ViewHolder{

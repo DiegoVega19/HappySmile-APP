@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.happysmile.myapplication.Adapters.CitaDoctorAdapter;
@@ -25,6 +26,7 @@ public class CitasActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refresh;
     int idDoctor;
+    SearchView searchView;
     CitaDoctorAdapter adapter;
     private RecyclerView recyclerView;
     private DoctorCita doctorCita;
@@ -51,7 +53,20 @@ public class CitasActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
+        searchView = findViewById(R.id.searchViewCitasDoc);
         getCitas();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return  true;
+            }
+        });
     }
 
     private void getCitas() {

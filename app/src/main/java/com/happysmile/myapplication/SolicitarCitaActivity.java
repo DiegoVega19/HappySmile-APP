@@ -30,11 +30,15 @@ import com.happysmile.myapplication.Model.CitaResponse;
 import com.happysmile.myapplication.Model.Municipio;
 import com.happysmile.myapplication.Model.RegisterRequest;
 import com.happysmile.myapplication.Model.Servicio;
+import com.happysmile.myapplication.Model.TotalResponse;
 
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,6 +57,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
     private static final String TAG = "Datos";
     Boolean NuevaCita = false;
     String servicioTexto;
+    String FECHAGLOBAL;
     Button btnguardarcita;
     Calendar calendar;
     DatePickerDialog datePickerDialog;
@@ -87,6 +92,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int Mday) {
                         fechapicker.setText(mYear+"/"+(mMonth+1)+"/"+Mday);
+                        FECHAGLOBAL=mYear+"-"+(mMonth+1)+"-"+Mday;
                     }
                 },year,month,day);
                 datePickerDialog.show();
@@ -105,11 +111,72 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
         btnguardarcita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostrardialog();
+                verificarDisponibilidad();
+
             }
         });
 
         spinnerserv.setOnItemSelectedListener(this);
+    }
+
+    private void verificarDisponibilidad() {
+        if (TextUtils.isEmpty(horapicker.getText().toString())|| TextUtils.isEmpty(fechapicker.getText().toString()))
+        {
+            String Mensaje = "Todos los Campos Son Requeridos";
+            Toast.makeText(SolicitarCitaActivity.this, Mensaje, Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+
+            String fecha, hora;
+            fecha = fechapicker.getText().toString();
+
+            Toast.makeText(this, "fercha "+FECHAGLOBAL, Toast.LENGTH_SHORT).show();
+            hora = horapicker.getText().toString();
+            Call<TotalResponse> totalResponseCall = ApiClient.getService().getDisponibilidad(FECHAGLOBAL,hora);
+            totalResponseCall.enqueue(new Callback<TotalResponse>() {
+                @Override
+                public void onResponse(Call<TotalResponse> call, Response<TotalResponse> response) {
+                    int disponible;
+                    disponible = response.body().getDisponibilidad();
+                    Toast.makeText(SolicitarCitaActivity.this, "Mi disponibilidad es: "+disponible, Toast.LENGTH_SHORT).show();
+                    if (disponible == 0)
+                    {
+                        mostrardialog();
+                    }
+                    else
+                    {
+                        //Una fecha se esta ocupando
+                        mostrarDialogError();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TotalResponse> call, Throwable t) {
+
+                }
+            });
+
+        }
+
+    }
+
+    private void mostrarDialogError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SolicitarCitaActivity.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_one_option,null);
+        builder.setView(view);
+        final AlertDialog dialog  = builder.create();
+        dialog.show();
+        TextView txt = view.findViewById(R.id.text_dialogOne);
+        txt.setText("La fecha y Hora seleccionadas no se encuentran disponibles, por Favor seleccione otra");
+        Button btnOk = view.findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void mostrardialog() {

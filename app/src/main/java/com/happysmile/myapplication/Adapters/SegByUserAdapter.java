@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,9 +20,11 @@ import com.happysmile.myapplication.Model.Seguimiento;
 import com.happysmile.myapplication.R;
 import com.happysmile.myapplication.SeguimientoDetalleActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SegByUserAdapter extends RecyclerView.Adapter<SegByUserAdapter.ViewHolder> {
+public class SegByUserAdapter extends RecyclerView.Adapter<SegByUserAdapter.ViewHolder> implements Filterable {
+   private List<Seguimiento> filterList;
     private List<Seguimiento> seguimientos;
     private Context context;
 
@@ -28,6 +32,7 @@ public class SegByUserAdapter extends RecyclerView.Adapter<SegByUserAdapter.View
     {
         this.context = applicationContext;
         this.seguimientos = seguimientoList;
+        this.filterList = seguimientoList;
     }
 
     @NonNull
@@ -39,15 +44,52 @@ public class SegByUserAdapter extends RecyclerView.Adapter<SegByUserAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull SegByUserAdapter.ViewHolder holder, int position) {
-        holder.codigoText.setText("Codigo de seguimiento: "+seguimientos.get(position).getId());
-        holder.fechaText.setText(seguimientos.get(position).getFecha());
+        holder.codigoText.setText("Codigo de seguimiento: "+filterList.get(position).getId());
+        holder.fechaText.setText(filterList.get(position).getFecha());
         holder.imagenPredefinida.setImageResource(R.drawable.card);
     }
 
     @Override
     public int getItemCount() {
-        return seguimientos.size();
+        return filterList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String searchString = charSequence.toString();
+                if (searchString.isEmpty()) {
+
+                    filterList = seguimientos;
+                }
+                else
+                {
+                    List<Seguimiento> tempFilteredList = new ArrayList<>();
+                    for(Seguimiento seguimiento : seguimientos)
+                    {
+                        //Buscar Por id
+                        if(Integer.toString(seguimiento.getId()).toLowerCase().contains(searchString))
+                        {
+                            tempFilteredList.add(seguimiento);
+                        }
+                    }
+                    filterList = tempFilteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filterList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filterList = (List<Seguimiento>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     public  class ViewHolder extends  RecyclerView.ViewHolder{
         private TextView codigoText, fechaText;
         private ImageView imagenPredefinida;

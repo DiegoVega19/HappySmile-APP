@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import retrofit2.Response;
 public class EndodonciasUserActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refresh;
+    SearchView searchView;
     int IdRecibido;
     EndoByUserAdapter adapter;
     private RecyclerView recyclerView;
@@ -52,9 +54,22 @@ public class EndodonciasUserActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
+        searchView = findViewById(R.id.searchViewbyEnd);
         IdRecibido = getIntent().getExtras().getInt("EndoidPaciente");
         Toast.makeText(this, "Mi id recibido es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         getEndodonciasUser();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return  true;
+            }
+        });
     }
 
     public void getEndodonciasUser()

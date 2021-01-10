@@ -3,6 +3,8 @@ package com.happysmile.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.work.Data;
+import androidx.work.WorkManager;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
@@ -21,7 +23,16 @@ import com.happysmile.myapplication.Model.Cita;
 import com.happysmile.myapplication.Model.CitaRequest;
 import com.happysmile.myapplication.Model.Municipio;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,12 +40,14 @@ import retrofit2.Response;
 
 public class PacienteEstadoCitaActivity extends AppCompatActivity {
 
+
+    String Fecha, Hora_Estado;
     EditText nombres, tiempo, service, datosDoctor, message;
     int CitaID;
     View v;
     TextView estadoCita;
     SwipeRefreshLayout refreshLayout;
-    Button cancelarButton;
+    Button cancelarButton, notificar, noNotificar;
     int idPacienteCita;
 
 
@@ -51,6 +64,8 @@ public class PacienteEstadoCitaActivity extends AppCompatActivity {
         message = findViewById(R.id.mensajeText);
         estadoCita = findViewById(R.id.estadoCitaText);
         cancelarButton = findViewById(R.id.btnCancelar);
+        notificar = findViewById(R.id.btnNotificar);
+        noNotificar = findViewById(R.id.btnCancelarNotificacion);
         //Ahora obtengo datos en shared
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
         idPacienteCita = pref.getInt("idPaciente", 0);
@@ -69,6 +84,46 @@ public class PacienteEstadoCitaActivity extends AppCompatActivity {
            public void onClick(View view) {
 
                mostrarDialogo();
+           }
+       });
+       noNotificar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               EliminarNoti("tag1");
+           }
+       });
+       notificar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               String tag = generateKey();
+
+               //Toast.makeText(PacienteEstadoCitaActivity.this, "Mi fecha desde la notificacion es: "+Fecha, Toast.LENGTH_SHORT).show();
+               String dateTimeUser = Fecha+" "+Hora_Estado;
+             //  Toast.makeText(PacienteEstadoCitaActivity.this, "MI HORA Y FECH: "+dateTimeUser, Toast.LENGTH_SHORT).show();
+             //  LocalDateTime localDateTime = LocalDateTime.parse(dateTimeUser, DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+               //long millis = localDateTime
+                 //      .atZone(ZoneId.systemDefault())
+                   //    .toInstant().toEpochMilli();
+
+               SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+               try {
+                   Calendar cal = Calendar.getInstance();
+                   cal.setTime(sdf.parse(dateTimeUser));
+                   Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+cal.getTimeInMillis(), Toast.LENGTH_SHORT).show();
+
+                   Long  Alertime =  cal.getTimeInMillis() - System.currentTimeMillis();
+                   Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+Alertime, Toast.LENGTH_LONG).show();
+
+               int random =(int) (Math.random()*50+1);
+                   Data data = guardarData("Happy Smile","Tienes una Cita Aprobada para el dia de hoy",random);
+                   WorkManagerNoti.guardarNoti(Alertime,data,"tag1");
+                   Toast.makeText(PacienteEstadoCitaActivity.this, "Notificacion Guardada con exito", Toast.LENGTH_SHORT).show();
+               } catch (ParseException e) {
+                   e.printStackTrace();
+               }
+
+                notificar.setVisibility(View.INVISIBLE);
+                noNotificar.setVisibility(View.VISIBLE);
            }
        });
     }
@@ -140,6 +195,8 @@ public class PacienteEstadoCitaActivity extends AppCompatActivity {
                         service.setText(servicio);
                         datosDoctor.setText(doctorN);
                         estadoCita.setText(estado);
+                        Fecha = fechapropuesta;
+                        Hora_Estado = hora;
 
                         if (estadoid == 1) {
                             estadoCita.setTextColor(getResources().getColor(R.color.NA_color,getResources().newTheme()));
@@ -158,6 +215,7 @@ public class PacienteEstadoCitaActivity extends AppCompatActivity {
                             datosDoctor.setVisibility(View.VISIBLE);
                             message.setVisibility(View.VISIBLE);
                             message.setText("Hola, Su cita, a sido aprobada con exito!!!.");
+                            notificar.setVisibility(View.VISIBLE);
                         }
                         else if (estadoid== 5)
                         {
@@ -221,6 +279,27 @@ public class PacienteEstadoCitaActivity extends AppCompatActivity {
     {
         Snackbar snackbar = Snackbar.make(v,"Cita Cancelada con Exito, Recarga La Pagina Para ver mas informacion!!!",Snackbar.LENGTH_LONG);
         snackbar.show();
+    }
+
+    private void EliminarNoti(String tag)
+    {
+        WorkManager.getInstance(this).cancelAllWorkByTag(tag);
+        Toast.makeText(this, "Ha cancelado la notificacion de su Cita", Toast.LENGTH_SHORT).show();
+        notificar.setVisibility(View.VISIBLE);
+        noNotificar.setVisibility(View.INVISIBLE);
+    }
+
+    private String generateKey()
+    {
+        return UUID.randomUUID().toString();
+    }
+    private Data  guardarData(String titulo, String detalle, int id_noti)
+    {
+        return new Data.Builder()
+                .putString("titulo",titulo)
+                .putString("detalle",detalle)
+                .putInt("Idnoti",id_noti)
+                .build();
     }
 
 }

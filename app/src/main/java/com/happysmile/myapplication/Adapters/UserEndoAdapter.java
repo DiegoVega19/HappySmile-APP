@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,15 +21,18 @@ import com.happysmile.myapplication.Model.User;
 import com.happysmile.myapplication.R;
 import com.happysmile.myapplication.SeguimientosUserActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserEndoAdapter extends RecyclerView.Adapter<UserEndoAdapter.ViewHolder> {
+public class UserEndoAdapter extends RecyclerView.Adapter<UserEndoAdapter.ViewHolder> implements Filterable {
+   private List<Endodoncia> filterList;
     private List<Endodoncia> endodoncias;
     private Context context;
 
     public UserEndoAdapter(Context ApplicationContext, List<Endodoncia> endodonciaList) {
         this.context = ApplicationContext;
         this.endodoncias = endodonciaList;
+        this.filterList = endodonciaList;
     }
 
 
@@ -40,14 +45,50 @@ public class UserEndoAdapter extends RecyclerView.Adapter<UserEndoAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull UserEndoAdapter.ViewHolder holder, int position) {
-        holder.nombreText.setText(endodoncias.get(position).getNombre() + " " + endodoncias.get(position).getApellido());
-        holder.codigoText.setText("Codigo de Paciente: " + endodoncias.get(position).getPasiente_id());
+        holder.nombreText.setText(filterList.get(position).getNombre() + " " + filterList.get(position).getApellido());
+        holder.codigoText.setText("Codigo de Paciente: " + filterList.get(position).getPasiente_id());
         holder.imagenPredefinida.setImageResource(R.drawable.card);
     }
 
     @Override
     public int getItemCount() {
-        return endodoncias.size();
+        return filterList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String searchString = charSequence.toString();
+                if (searchString.isEmpty()) {
+
+                    filterList = endodoncias;
+                }
+                else
+                {
+                    List<Endodoncia> tempFilteredList = new ArrayList<>();
+                    for (Endodoncia endodoncia :endodoncias)
+                    {
+                        //Buscar Por id
+                        if(endodoncia.getNombre().toLowerCase().contains(searchString))
+                        {
+                            tempFilteredList.add(endodoncia);
+                        }
+                    }
+                    filterList = tempFilteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filterList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filterList = (List<Endodoncia>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import retrofit2.Response;
 public class SeguimientosUserActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refresh;
+    SearchView searchView;
     int IdRecibido;
     SegByUserAdapter adapter;
     private RecyclerView recyclerView;
@@ -52,11 +54,22 @@ public class SeguimientosUserActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
-
-
+        searchView = findViewById(R.id.searchViewBySeg);
         IdRecibido = getIntent().getExtras().getInt("idPaciente");
         Toast.makeText(this, "Mi id recibido es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         getSeguimientosUser();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return  true;
+            }
+        });
     }
 
     private void getSeguimientosUser()

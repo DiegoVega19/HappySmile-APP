@@ -175,7 +175,6 @@ public interface ApiService {
     @GET("getConteoSeg")
     Call<TotalResponse> getTotalSeguimientos();
 
-
-
-
+    @GET("getVerificacionFecha/{fecha}/{hora}")
+    Call<TotalResponse> getDisponibilidad(@Path("fecha") String fechaUser, @Path("hora") String horaUser);
 }

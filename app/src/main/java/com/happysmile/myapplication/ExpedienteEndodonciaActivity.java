@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.happysmile.myapplication.Adapters.UserEndoAdapter;
@@ -25,6 +26,7 @@ public class ExpedienteEndodonciaActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refresh;
     UserEndoAdapter adapter;
+    SearchView searchView;
     private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,20 @@ public class ExpedienteEndodonciaActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
+        searchView = findViewById(R.id.searchViewUserEndo);
         getEndo();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return  true;
+            }
+        });
     }
     private void getEndo()
     {

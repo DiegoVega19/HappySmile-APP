@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.happysmile.myapplication.Adapters.EndodonciaAdapter;
@@ -31,9 +32,10 @@ public class PacienteEndoTratActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refresh;
     int idPacienteCita;
+    SearchView searchView;
     List<Endodoncia> endodoncias;
     EndodonciaAdapter adapter;
-    EditText search;
+
     private RecyclerView recyclerView;
     private Endodoncia endodoncia;
     @Override
@@ -41,7 +43,6 @@ public class PacienteEndoTratActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paciente_endo_trat);
         refresh = findViewById(R.id.refreshE);
-        search = findViewById(R.id.editTextTextSearch);
         inicializarVistas();
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -58,7 +59,20 @@ public class PacienteEndoTratActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
+        searchView = findViewById(R.id.searchViewEndoTrat);
         getEndodoncias();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return  true;
+            }
+        });
     }
 
     private void getEndodoncias() {

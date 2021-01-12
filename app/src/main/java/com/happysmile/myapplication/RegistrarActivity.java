@@ -50,12 +50,13 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
     List<String> integerList;
     List<Municipio> municipios;
     ArrayAdapter<Municipio> stringArrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
         username = findViewById(R.id.nameText);
-        v =  findViewById(android.R.id.content);
+        v = findViewById(android.R.id.content);
         email = findViewById(R.id.emailText);
         pass = findViewById(R.id.passwordText);
         nombres = findViewById(R.id.nombreText);
@@ -71,10 +72,10 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
         spinnersexo = findViewById(R.id.sexoSpinner);
         spinnerestadocivil = findViewById(R.id.estadoCivilSpinner);
         spinnnermuni = findViewById(R.id.muniSpinner);
-        integerList  = new ArrayList<>();
-       municipios = new ArrayList<>();
-       stringArrayAdapter = new ArrayAdapter(
-                this,android.R.layout.simple_spinner_item,municipios);
+        integerList = new ArrayList<>();
+        municipios = new ArrayList<>();
+        stringArrayAdapter = new ArrayAdapter(
+                this, android.R.layout.simple_spinner_item, municipios);
         InicilizarSpinnersexo();
         InicilizarSpinnerEstadoCivil();
         InicializarSpinnerMuni();
@@ -92,9 +93,9 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
                 datePickerDialog = new DatePickerDialog(RegistrarActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int Mday) {
-                    fechanac.setText(mYear+"/"+(mMonth+1)+"/"+Mday);
+                        fechanac.setText(mYear + "/" + (mMonth + 1) + "/" + Mday);
                     }
-                },year,month,day);
+                }, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -105,43 +106,39 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
     private void Obteneridmunicipio() {
 
 
-         Call<List<Municipio>> lstid = service.getid(Muni);
-         lstid.enqueue(new Callback<List<Municipio>>() {
-             @Override
-             public void onResponse(Call<List<Municipio>> call, Response<List<Municipio>> response) {
-                 if (response.isSuccessful())
-                 {
+        Call<List<Municipio>> lstid = service.getid(Muni);
+        lstid.enqueue(new Callback<List<Municipio>>() {
+            @Override
+            public void onResponse(Call<List<Municipio>> call, Response<List<Municipio>> response) {
+                if (response.isSuccessful()) {
 
-                     List<Municipio> municipios = response.body();
-                     for (Municipio municipio: municipios)
-                     {
+                    List<Municipio> municipios = response.body();
+                    for (Municipio municipio : municipios) {
 
                         int id = municipio.getId();
-                       //  Toast.makeText(RegistrarActivity.this, "Mi id de municipio es:"+id, Toast.LENGTH_SHORT).show();
-                         IdMuni = id;
-                     }
+                        //  Toast.makeText(RegistrarActivity.this, "Mi id de municipio es:"+id, Toast.LENGTH_SHORT).show();
+                        IdMuni = id;
+                    }
 
-                 }
-             }
+                }
+            }
 
-             @Override
-             public void onFailure(Call<List<Municipio>> call, Throwable t) {
-                 String message = t.getLocalizedMessage();
-                 Toast.makeText(RegistrarActivity.this,message, Toast.LENGTH_LONG).show();
-             }
-         });
+            @Override
+            public void onFailure(Call<List<Municipio>> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(RegistrarActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
-    public void InicilizarSpinnersexo()
-    {
+    public void InicilizarSpinnersexo() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.sexo, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnersexo.setAdapter(adapter);
     }
 
-    public void InicilizarSpinnerEstadoCivil()
-    {
+    public void InicilizarSpinnerEstadoCivil() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.estadocivil, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -149,17 +146,14 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
 
     }
 
-    public void InicializarSpinnerMuni()
-    {
+    public void InicializarSpinnerMuni() {
 
         Call<List<Municipio>> listCall = service.getMuni();
         listCall.enqueue(new Callback<List<Municipio>>() {
             @Override
             public void onResponse(Call<List<Municipio>> call, Response<List<Municipio>> response) {
-                if (response.isSuccessful())
-                {
-                    for (Municipio muni : response.body())
-                    {
+                if (response.isSuccessful()) {
+                    for (Municipio muni : response.body()) {
                         String name = muni.getNombre();
                         Municipio municipio = new Municipio(name);
                         municipios.add(municipio);
@@ -172,59 +166,50 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onFailure(Call<List<Municipio>> call, Throwable t) {
                 String message = t.getLocalizedMessage();
-                Toast.makeText(RegistrarActivity.this,message, Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrarActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
 
 
-
-
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-       if (parent.getId()==R.id.muniSpinner)
-       {
-           String textmuni = parent.getItemAtPosition(position).toString();
-         //  Toast.makeText(parent.getContext(), "Mi municipio es:"+textmuni, Toast.LENGTH_SHORT).show();
-           Muni =textmuni;
-           Obteneridmunicipio();
-       }
-       else
-           if (parent.getId()==R.id.sexoSpinner)
-           {
-               String textsexo = parent.getItemAtPosition(position).toString();
-              Sexo = textsexo;
-           }
-           else
-           if (parent.getId()==R.id.estadoCivilSpinner)
-           {
-               String textcivil = parent.getItemAtPosition(position).toString();
+        if (parent.getId() == R.id.muniSpinner) {
+            String textmuni = parent.getItemAtPosition(position).toString();
+            //  Toast.makeText(parent.getContext(), "Mi municipio es:"+textmuni, Toast.LENGTH_SHORT).show();
+            Muni = textmuni;
+            Obteneridmunicipio();
+        } else if (parent.getId() == R.id.sexoSpinner) {
+            String textsexo = parent.getItemAtPosition(position).toString();
+            Sexo = textsexo;
+        } else if (parent.getId() == R.id.estadoCivilSpinner) {
+            String textcivil = parent.getItemAtPosition(position).toString();
             //   Toast.makeText(parent.getContext(), "Mi Estado civil es:"+textcivil, Toast.LENGTH_SHORT).show();
-               EstadoCivil = textcivil;
-           }
+            EstadoCivil = textcivil;
+        }
 
-           Guardardatos();
+        Guardardatos();
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
     private void Guardardatos() {
         btncrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //    Toast.makeText(RegistrarActivity.this, "Mi Id De municipo es: "+IdMuni + "Mi Sexo es: "+Sexo + "Mi estado civil es: "+EstadoCivil, Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(RegistrarActivity.this, "Mi Id De municipo es: "+IdMuni + "Mi Sexo es: "+Sexo + "Mi estado civil es: "+EstadoCivil, Toast.LENGTH_SHORT).show();
 
                 if (TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(pass.getText().toString())
-                ||TextUtils.isEmpty(nombres.getText().toString()) ||TextUtils.isEmpty(apellidos.getText().toString()) || TextUtils.isEmpty(fechanac.getText().toString())
-                ||TextUtils.isEmpty(edad.getText().toString())||TextUtils.isEmpty(centroTrabajo.getText().toString()) || TextUtils.isEmpty(ocupacion.getText().toString())
-                ||TextUtils.isEmpty(telefono.getText().toString()) ||TextUtils.isEmpty(celular.getText().toString()))
-                {
-                        String Mensaje = "Todos los Campos Son Requeridos";
+                        || TextUtils.isEmpty(nombres.getText().toString()) || TextUtils.isEmpty(apellidos.getText().toString()) || TextUtils.isEmpty(fechanac.getText().toString())
+                        || TextUtils.isEmpty(edad.getText().toString()) || TextUtils.isEmpty(centroTrabajo.getText().toString()) || TextUtils.isEmpty(ocupacion.getText().toString())
+                        || TextUtils.isEmpty(telefono.getText().toString()) || TextUtils.isEmpty(celular.getText().toString())) {
+                    String Mensaje = "Todos los Campos Son Requeridos";
                     Toast.makeText(RegistrarActivity.this, Mensaje, Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
                     RegisterRequest registerRequest = new RegisterRequest();
                     registerRequest.setName(username.getText().toString());
                     registerRequest.setEmail(email.getText().toString());
@@ -234,7 +219,7 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
                     registerRequest.setApellido(apellidos.getText().toString());
                     registerRequest.setSexo(Sexo);
                     String fecha = fechanac.getText().toString();
-                //    Date fechafinal = Date.valueOf(fecha);
+                    //    Date fechafinal = Date.valueOf(fecha);
                     registerRequest.setFechaDeNacimiento(fecha);
                     int num;
                     num = Integer.parseInt(edad.getText().toString());
@@ -251,41 +236,35 @@ public class RegistrarActivity extends AppCompatActivity implements AdapterView.
         });
     }
 
-  public void RegisterUser(RegisterRequest registerRequest)
-  {
-      Call<RegisterResponse> registerResponseCall = ApiClient.getService().registrarse(registerRequest);
-      registerResponseCall.enqueue(new Callback<RegisterResponse>() {
-          @Override
-          public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                if(response.isSuccessful())
-                {
+    public void RegisterUser(RegisterRequest registerRequest) {
+        Call<RegisterResponse> registerResponseCall = ApiClient.getService().registrarse(registerRequest);
+        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                if (response.isSuccessful()) {
                     mostrarSnackbarCorrect();
-                    Intent i = new Intent(RegistrarActivity.this,LoginActivity.class);
+                    Intent i = new Intent(RegistrarActivity.this, LoginActivity.class);
                     finish();
-                }
-                else
-                {
+                } else {
                     mostrarSnackbarCorrect();
                 }
-          }
+            }
 
-          @Override
-          public void onFailure(Call<RegisterResponse> call, Throwable t) {
-              String message = t.getLocalizedMessage();
-              Toast.makeText(RegistrarActivity.this,message, Toast.LENGTH_LONG).show();
-          }
-      });
-  }
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(RegistrarActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
-    public  void mostrarSnackbarAlgosaliomal()
-    {
-        Snackbar snackbar = Snackbar.make(v,"Registro no guardado, Algo salio mal!!!",Snackbar.LENGTH_LONG);
+    public void mostrarSnackbarAlgosaliomal() {
+        Snackbar snackbar = Snackbar.make(v, "Registro no guardado, Algo salio mal!!!", Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
-    public  void mostrarSnackbarCorrect()
-    {
-        Snackbar snackbar = Snackbar.make(v,"Usuario Registrado Con Exito!!!",Snackbar.LENGTH_LONG);
+    public void mostrarSnackbarCorrect() {
+        Snackbar snackbar = Snackbar.make(v, "Usuario Registrado Con Exito!!!", Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 

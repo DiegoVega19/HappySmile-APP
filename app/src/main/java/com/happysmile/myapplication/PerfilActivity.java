@@ -61,7 +61,7 @@ public class PerfilActivity extends AppCompatActivity {
                     telefono.setText(telefonoDOC);
                     celular.setText(celularDoc);
                     inss.setText(inssDoc);
-                    Toast.makeText(PerfilActivity.this, "Mi nombre es"+DocNombre, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(PerfilActivity.this, "Mi nombre es"+DocNombre, Toast.LENGTH_SHORT).show();
                 }
             }
 

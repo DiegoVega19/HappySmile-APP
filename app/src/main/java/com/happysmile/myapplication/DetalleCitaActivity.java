@@ -25,10 +25,11 @@ import retrofit2.Response;
 
 public class DetalleCitaActivity extends AppCompatActivity {
 
-   Button cancelarNotificacion, activarNotificacion;
-   String FECHA_GLOBAL, HORA_GLOBAL;
+    Button cancelarNotificacion, activarNotificacion;
+    String FECHA_GLOBAL, HORA_GLOBAL;
     int IdRecibido;
     EditText nombre, servicio, fecha, hora;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class DetalleCitaActivity extends AppCompatActivity {
         activarNotificacion = findViewById(R.id.btnDocNoti);
 
         IdRecibido = getIntent().getExtras().getInt("id");
-        Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         obtenerCita();
         cancelarNotificacion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,23 +55,26 @@ public class DetalleCitaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String tag = generateKey();
-                String dateTimeUser =FECHA_GLOBAL+" "+HORA_GLOBAL;
+                String dateTimeUser = FECHA_GLOBAL + " " + HORA_GLOBAL;
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
                 try {
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(sdf.parse(dateTimeUser));
-                  //  Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+cal.getTimeInMillis(), Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+cal.getTimeInMillis(), Toast.LENGTH_SHORT).show();
 
-                    Long  Alertime =  cal.getTimeInMillis() - System.currentTimeMillis();
+                    Long Alertime = cal.getTimeInMillis() - System.currentTimeMillis();
                     //Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+Alertime, Toast.LENGTH_LONG).show();
 
-                    int random =(int) (Math.random()*50+1);
-                    Data data = guardarData("Happy Smile","Tienes una Cita a las: "+dateTimeUser,random);
-                    WorkManagerNoti.guardarNoti(Alertime,data,"DetalleCitaTag");
-                   // Toast.makeText(PacienteEstadoCitaActivity.this, "Notificacion Guardada con exito", Toast.LENGTH_SHORT).show();
+                    int random = (int) (Math.random() * 50 + 1);
+                    Data data = guardarData("Happy Smile", "Tienes una Cita a las: " + dateTimeUser, random);
+//                    WorkManagerNoti.guardarNoti(Alertime,data,"DetalleCitaTag");
+                    WorkManagerDoc.guardarNotiDoc(Alertime,data,"DetalleCitaTag");
+                    // Toast.makeText(PacienteEstadoCitaActivity.this, "Notificacion Guardada con exito", Toast.LENGTH_SHORT).show();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                activarNotificacion.setVisibility(View.INVISIBLE);
+                cancelarNotificacion.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -80,15 +84,14 @@ public class DetalleCitaActivity extends AppCompatActivity {
         doctorCitaCall.enqueue(new Callback<DoctorCita>() {
             @Override
             public void onResponse(Call<DoctorCita> call, Response<DoctorCita> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     String citaNombre, citaApellid, citaServicio, citaFecha, citaHora;
                     citaNombre = response.body().getNombre();
                     citaApellid = response.body().getApellido();
                     citaServicio = response.body().getServicio();
                     citaFecha = response.body().getFechaPropuesta();
                     citaHora = response.body().getHoraPropuesta();
-                    nombre.setText(citaNombre+" "+citaApellid);
+                    nombre.setText(citaNombre + " " + citaApellid);
                     servicio.setText(citaServicio);
                     fecha.setText(citaFecha);
                     hora.setText(citaHora);
@@ -106,24 +109,22 @@ public class DetalleCitaActivity extends AppCompatActivity {
         });
     }
 
-    private void EliminarNoti(String tag)
-    {
+    private void EliminarNoti(String tag) {
         WorkManager.getInstance(this).cancelAllWorkByTag(tag);
         Toast.makeText(this, "Ha cancelado la notificacion de su Cita", Toast.LENGTH_SHORT).show();
         activarNotificacion.setVisibility(View.VISIBLE);
         cancelarNotificacion.setVisibility(View.INVISIBLE);
     }
 
-    private String generateKey()
-    {
+    private String generateKey() {
         return UUID.randomUUID().toString();
     }
-    private Data guardarData(String titulo, String detalle, int id_noti)
-    {
+
+    private Data guardarData(String titulo, String detalle, int id_noti) {
         return new Data.Builder()
-                .putString("titulo",titulo)
-                .putString("detalle",detalle)
-                .putInt("Idnoti",id_noti)
+                .putString("titulo", titulo)
+                .putString("detalle", detalle)
+                .putInt("Idnoti", id_noti)
                 .build();
     }
 }

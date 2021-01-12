@@ -26,7 +26,7 @@ public class ExpedienteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expediente);
-       v  =  findViewById(android.R.id.content);
+        v = findViewById(android.R.id.content);
         cardExP = findViewById(R.id.cardExpPrin);
         cardSeg = findViewById(R.id.cardExpSeg);
         cardEndo = findViewById(R.id.cardExpEnd);
@@ -40,10 +40,9 @@ public class ExpedienteActivity extends AppCompatActivity {
         totalResponseCall.enqueue(new Callback<TotalResponse>() {
             @Override
             public void onResponse(Call<TotalResponse> call, Response<TotalResponse> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     SegCount = response.body().getTotalSeguimientos();
-                    Toast.makeText(ExpedienteActivity.this, "Mi total de seguimientos son: "+SegCount, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(ExpedienteActivity.this, "Mi total de seguimientos son: " + SegCount, Toast.LENGTH_SHORT).show();
                     irSeguimientos();
                 }
             }
@@ -62,7 +61,7 @@ public class ExpedienteActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<TotalResponse> call, Response<TotalResponse> response) {
                 ExpCount = response.body().getTotalExpedientes();
-                Toast.makeText(ExpedienteActivity.this, "Mi total de expedientes es: "+ExpCount, Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(ExpedienteActivity.this, "Mi total de expedientes es: " + ExpCount, Toast.LENGTH_SHORT).show();
                 irExpedientes();
             }
 
@@ -80,7 +79,7 @@ public class ExpedienteActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<TotalResponse> call, Response<TotalResponse> response) {
                 EndoCount = response.body().getTotalEndodoncias();
-                Toast.makeText(ExpedienteActivity.this, "Mi total de endodoncias es: "+EndoCount, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ExpedienteActivity.this, "Mi total de endodoncias es: " + EndoCount, Toast.LENGTH_SHORT).show();
                 IrEndodonciass();
 
             }
@@ -93,37 +92,30 @@ public class ExpedienteActivity extends AppCompatActivity {
         });
     }
 
-    private void irSeguimientos()
-    {
+    private void irSeguimientos() {
         cardSeg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SegCount==0)
-                {
+                if (SegCount == 0) {
                     String dato = "Seguimientos";
                     MostrarSnackbarEstado(dato);
-                }
-                else
-                {
-                    Intent i = new Intent(ExpedienteActivity.this,ExpedienteSeguimientoActivity.class);
+                } else {
+                    Intent i = new Intent(ExpedienteActivity.this, ExpedienteSeguimientoActivity.class);
                     startActivity(i);
                 }
 
             }
         });
     }
-    private void irExpedientes()
-    {
+
+    private void irExpedientes() {
         cardExP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ExpCount==0)
-                {
+                if (ExpCount == 0) {
                     String dato = "Expedientes";
                     MostrarSnackbarEstado(dato);
-                }
-                else
-                {
+                } else {
                     Intent i = new Intent(ExpedienteActivity.this, ExpedientePrincipalActivity.class);
                     startActivity(i);
                 }
@@ -131,18 +123,15 @@ public class ExpedienteActivity extends AppCompatActivity {
         });
 
     }
-    private void IrEndodonciass()
-    {
+
+    private void IrEndodonciass() {
         cardEndo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (EndoCount==0)
-                {
+                if (EndoCount == 0) {
                     String dato = "Endodoncias";
                     MostrarSnackbarEstado(dato);
-                }
-                else
-                {
+                } else {
                     Intent i = new Intent(ExpedienteActivity.this, ExpedienteEndodonciaActivity.class);
                     startActivity(i);
                 }
@@ -151,9 +140,9 @@ public class ExpedienteActivity extends AppCompatActivity {
         });
 
     }
-    public  void MostrarSnackbarEstado(String dato)
-    {
-        Snackbar snackbar = Snackbar.make(v,"No Posee  Registros de "+dato +"!!!",Snackbar.LENGTH_LONG);
+
+    public void MostrarSnackbarEstado(String dato) {
+        Snackbar snackbar = Snackbar.make(v, "No Posee  Registros de " + dato + "!!!", Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 }

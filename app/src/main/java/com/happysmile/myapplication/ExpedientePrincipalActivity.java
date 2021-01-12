@@ -28,12 +28,13 @@ public class ExpedientePrincipalActivity extends AppCompatActivity {
     SearchView searchView;
     ExpedientePrincipalAdapter adapter;
     private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expediente_principal);
         refresh = findViewById(R.id.expRefresh);
-            inicializarVistas();
+        inicializarVistas();
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -43,6 +44,7 @@ public class ExpedientePrincipalActivity extends AppCompatActivity {
             }
         });
     }
+
     private void inicializarVistas() {
         recyclerView = findViewById(R.id.RecyclerDocExp);
         recyclerView.setHasFixedSize(true);
@@ -59,32 +61,31 @@ public class ExpedientePrincipalActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
-                return  true;
+                return true;
             }
         });
     }
 
-    private void getExpedientes(){
-    Call<ExpedienteResponse> expedienteResponseCall = ApiClient.getService().getExp();
-    expedienteResponseCall.enqueue(new Callback<ExpedienteResponse>() {
-        @Override
-        public void onResponse(Call<ExpedienteResponse> call, Response<ExpedienteResponse> response) {
-            if (response.isSuccessful())
-            {
-                List<Expediente> expedientes = response.body().getExpediente();
-                adapter = new ExpedientePrincipalAdapter(getApplicationContext(),expedientes);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                recyclerView.smoothScrollToPosition(0);
+    private void getExpedientes() {
+        Call<ExpedienteResponse> expedienteResponseCall = ApiClient.getService().getExp();
+        expedienteResponseCall.enqueue(new Callback<ExpedienteResponse>() {
+            @Override
+            public void onResponse(Call<ExpedienteResponse> call, Response<ExpedienteResponse> response) {
+                if (response.isSuccessful()) {
+                    List<Expediente> expedientes = response.body().getExpediente();
+                    adapter = new ExpedientePrincipalAdapter(getApplicationContext(), expedientes);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    recyclerView.smoothScrollToPosition(0);
+                }
             }
-        }
 
-        @Override
-        public void onFailure(Call<ExpedienteResponse> call, Throwable t) {
-            String message = t.getLocalizedMessage();
-            Toast.makeText(ExpedientePrincipalActivity.this, message, Toast.LENGTH_LONG).show();
-        }
-    });
+            @Override
+            public void onFailure(Call<ExpedienteResponse> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(ExpedientePrincipalActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 }

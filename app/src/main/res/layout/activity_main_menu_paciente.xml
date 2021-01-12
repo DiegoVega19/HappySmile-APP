@@ -146,7 +146,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/PerfilCard"
-        android:layout_width="360dp"
+        android:layout_width="0dp"
         android:layout_height="180dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="42dp"
@@ -154,7 +154,7 @@
         app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Citascard" >
+        app:layout_constraintTop_toBottomOf="@+id/Citascard">
 
         <androidx.constraintlayout.widget.ConstraintLayout
 

@@ -17,7 +17,7 @@ import retrofit2.Response;
 public class PacienteTraSeguiDetalleActivity extends AppCompatActivity {
     int IdRecibido;
     EditText fechaIniText, fechaUltText, descripcionText, observacionText;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class PacienteTraSeguiDetalleActivity extends AppCompatActivity {
         observacionText = findViewById(R.id.SegmensajeObservacion);
 
         IdRecibido = getIntent().getExtras().getInt("id");
-        Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         obtenerTratamiento();
     }
 
@@ -37,8 +37,7 @@ public class PacienteTraSeguiDetalleActivity extends AppCompatActivity {
         tratamientoSeguimientoCall.enqueue(new Callback<TratamientoSeguimiento>() {
             @Override
             public void onResponse(Call<TratamientoSeguimiento> call, Response<TratamientoSeguimiento> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     String fecha, fechaprox, descripcion, observacion;
                     TratamientoSeguimiento tratamientoSeguimiento = response.body();
                     fecha = response.body().getFechaInicio();

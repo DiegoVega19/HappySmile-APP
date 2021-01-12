@@ -56,7 +56,7 @@ public class SeguimientosUserActivity extends AppCompatActivity {
         recyclerView.smoothScrollToPosition(0);
         searchView = findViewById(R.id.searchViewBySeg);
         IdRecibido = getIntent().getExtras().getInt("idPaciente");
-        Toast.makeText(this, "Mi id recibido es: "+IdRecibido, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Mi id recibido es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         getSeguimientosUser();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

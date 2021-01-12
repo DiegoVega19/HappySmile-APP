@@ -17,6 +17,7 @@ public class EndoDetalleActivity extends AppCompatActivity {
 
     int IdRecibido;
     EditText fecha, diente;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class EndoDetalleActivity extends AppCompatActivity {
         fecha = findViewById(R.id.EndoDetailFechaText);
         diente = findViewById(R.id.EndoDetailDiente);
         IdRecibido = getIntent().getExtras().getInt("idEndodoncia");
-        Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         getDetalle();
     }
 
@@ -33,8 +34,7 @@ public class EndoDetalleActivity extends AppCompatActivity {
         endodonciaDetalleCall.enqueue(new Callback<EndodonciaDetalle>() {
             @Override
             public void onResponse(Call<EndodonciaDetalle> call, Response<EndodonciaDetalle> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     String endFecha, endDiente;
                     endFecha = response.body().getFecha();
                     endDiente = response.body().getDiente_a_tratar();

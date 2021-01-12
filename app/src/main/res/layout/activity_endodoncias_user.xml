@@ -27,7 +27,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/noyh"
-                android:text="Expedientes"
+                android:text="Endodoncia"
 
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"

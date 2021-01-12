@@ -16,9 +16,10 @@ import retrofit2.Response;
 
 public class DoctorExpDetalleActivity extends AppCompatActivity {
 
-   EditText id, fecha, presionMax, presionMin, frecPulso, FrecRespiratorio, TempBucal, peso, talla, grupSang, factor;
-     TextView titulo;
-   int Exp_ID;
+    EditText id, fecha, presionMax, presionMin, frecPulso, FrecRespiratorio, TempBucal, peso, talla, grupSang, factor;
+    TextView titulo;
+    int Exp_ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +39,9 @@ public class DoctorExpDetalleActivity extends AppCompatActivity {
 
         //Ahora recupero los datos desde intent
         String nombre = getIntent().getExtras().getString("nombre");
-        titulo.setText("Expediente de "+nombre);
+        titulo.setText("Expediente de " + nombre);
         Exp_ID = getIntent().getExtras().getInt("idExp");
-        Toast.makeText(this, "Mi id recibido es"+Exp_ID, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "Mi id recibido es"+Exp_ID, Toast.LENGTH_SHORT).show();
         obtenerDetalle();
     }
 
@@ -49,10 +50,9 @@ public class DoctorExpDetalleActivity extends AppCompatActivity {
         expedienteDetalleCall.enqueue(new Callback<ExpedienteDetalle>() {
             @Override
             public void onResponse(Call<ExpedienteDetalle> call, Response<ExpedienteDetalle> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     int ExpId;
-                    String  ExpFecha, ExpGs, ExpFact;
+                    String ExpFecha, ExpGs, ExpFact;
                     Double ExpPMax, ExpPMin, ExpFrecP, ExpFrecR, ExpTempB, ExpPes, ExpTalla;
                     ExpId = response.body().getId();
                     ExpFecha = response.body().getFecha();
@@ -67,7 +67,7 @@ public class DoctorExpDetalleActivity extends AppCompatActivity {
                     ExpTalla = response.body().getTalla();
                     String idText = String.valueOf(ExpId);
 
-                   id.setText(idText);
+                    id.setText(idText);
                     fecha.setText(ExpFecha);
                     presionMax.setText(ExpPMax.toString());
                     presionMin.setText(ExpPMin.toString());

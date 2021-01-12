@@ -64,7 +64,7 @@ public class CitasActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
-                return  true;
+                return true;
             }
         });
     }
@@ -78,9 +78,9 @@ public class CitasActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DoctorCitaResponse> call, Response<DoctorCitaResponse> response) {
                 List<DoctorCita> doctorCitas = response.body().getCita();
-               adapter = new CitaDoctorAdapter(getApplicationContext(),doctorCitas);
-               recyclerView.setAdapter(adapter);
-               adapter.notifyDataSetChanged();
+                adapter = new CitaDoctorAdapter(getApplicationContext(), doctorCitas);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
                 recyclerView.smoothScrollToPosition(0);
             }
 

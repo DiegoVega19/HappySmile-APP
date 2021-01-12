@@ -56,7 +56,7 @@ public class EndodonciasUserActivity extends AppCompatActivity {
         recyclerView.smoothScrollToPosition(0);
         searchView = findViewById(R.id.searchViewbyEnd);
         IdRecibido = getIntent().getExtras().getInt("EndoidPaciente");
-        Toast.makeText(this, "Mi id recibido es: "+IdRecibido, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Mi id recibido es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         getEndodonciasUser();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

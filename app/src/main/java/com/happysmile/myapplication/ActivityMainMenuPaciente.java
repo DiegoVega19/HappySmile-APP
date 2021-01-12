@@ -30,6 +30,7 @@ public class ActivityMainMenuPaciente extends AppCompatActivity {
     TextView username, bienvenida;
     CardView cardPerfil, cardCitas, cardTratamientos;
     private ApiService service = ApiClient.getRetrofit().create(ApiService.class);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,7 @@ public class ActivityMainMenuPaciente extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ActivityMainMenuPaciente.this, "Tocado", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(ActivityMainMenuPaciente.this,EditarPerfilActivity.class);
+                Intent i = new Intent(ActivityMainMenuPaciente.this, EditarPerfilActivity.class);
                 startActivity(i);
             }
         });
@@ -56,24 +57,24 @@ public class ActivityMainMenuPaciente extends AppCompatActivity {
         cardCitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ActivityMainMenuPaciente.this,PacienteCitaActivity.class);
+                Intent i = new Intent(ActivityMainMenuPaciente.this, PacienteCitaActivity.class);
                 startActivity(i);
             }
         });
         cardTratamientos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ActivityMainMenuPaciente.this,PacienteTratamientoMenu.class);
+                Intent i = new Intent(ActivityMainMenuPaciente.this, PacienteTratamientoMenu.class);
                 startActivity(i);
             }
         });
-        }
+    }
 
     private void cargardatos() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-        String datos = pref.getString("DIEGO","no hay nada");
-        String correo = pref.getString("Correo","no hay nada");
-        Log.i(TAG,"SU Correo es:"+correo);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
+        String datos = pref.getString("DIEGO", "no hay nada");
+        String correo = pref.getString("Correo", "no hay nada");
+        Log.i(TAG, "SU Correo es:" + correo);
         username.setText(datos);
         CorrePaciente = correo;
 
@@ -85,33 +86,29 @@ public class ActivityMainMenuPaciente extends AppCompatActivity {
         listCall.enqueue(new Callback<List<Paciente>>() {
             @Override
             public void onResponse(Call<List<Paciente>> call, Response<List<Paciente>> response) {
-                    if (response.isSuccessful())
-                    {
-                        List<Paciente> pacientes = response.body();
-                        for (Paciente paciente: pacientes)
-                        {
+                if (response.isSuccessful()) {
+                    List<Paciente> pacientes = response.body();
+                    for (Paciente paciente : pacientes) {
 
-                            int id = paciente.getId();
-                            Log.i(TAG,"Su id como paciente es:"+id);
-                          //  Toast.makeText(RegistrarActivity.this, "Mi id de municipio es:"+id, Toast.LENGTH_SHORT).show();
-                            SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putInt("idPaciente",id);
-                            editor.commit();
+                        int id = paciente.getId();
+                        // Log.i(TAG, "Su id como paciente es:" + id);
+                        //  Toast.makeText(RegistrarActivity.this, "Mi id de municipio es:"+id, Toast.LENGTH_SHORT).show();
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putInt("idPaciente", id);
+                        editor.commit();
 
-                        }
                     }
-                    else
-                    {
-                        String message = "Un error a ocurrido";
-                        Toast.makeText(ActivityMainMenuPaciente.this,message, Toast.LENGTH_LONG).show();
-                    }
+                } else {
+                    String message = "Un error a ocurrido";
+                    Toast.makeText(ActivityMainMenuPaciente.this, message, Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<List<Paciente>> call, Throwable t) {
                 String message = t.getLocalizedMessage();
-                Toast.makeText(ActivityMainMenuPaciente.this,message, Toast.LENGTH_LONG).show();
+                Toast.makeText(ActivityMainMenuPaciente.this, message, Toast.LENGTH_LONG).show();
             }
         });
 

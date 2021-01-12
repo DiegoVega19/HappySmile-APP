@@ -139,7 +139,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
                 public void onResponse(Call<TotalResponse> call, Response<TotalResponse> response) {
                     int disponible;
                     disponible = response.body().getDisponibilidad();
-                    Toast.makeText(SolicitarCitaActivity.this, "Mi disponibilidad es: "+disponible, Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(SolicitarCitaActivity.this, "Mi disponibilidad es: "+disponible, Toast.LENGTH_SHORT).show();
                     if (disponible == 0)
                     {
                         mostrardialog();
@@ -153,7 +153,8 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
 
                 @Override
                 public void onFailure(Call<TotalResponse> call, Throwable t) {
-
+                    String message = t.getLocalizedMessage();
+                    Toast.makeText(SolicitarCitaActivity.this,message, Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -320,7 +321,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
         if (parent.getId()==R.id.spinnerServicio)
         {
             String textServicio = parent.getItemAtPosition(position).toString();
-            Toast.makeText(parent.getContext(), "Mi Servicio es:"+textServicio, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(parent.getContext(), "Mi Servicio es:"+textServicio, Toast.LENGTH_SHORT).show();
             servicioTexto = textServicio;
           Obteneridservicio();
         }
@@ -345,7 +346,7 @@ public class SolicitarCitaActivity extends AppCompatActivity implements TimePick
                     {
 
                         int id = servicio.getId();
-                          Toast.makeText(SolicitarCitaActivity.this, "Mi id de servicio es:"+id, Toast.LENGTH_SHORT).show();
+                         // Toast.makeText(SolicitarCitaActivity.this, "Mi id de servicio es:"+id, Toast.LENGTH_SHORT).show();
                         IDSERV = id;
                     }
                 }

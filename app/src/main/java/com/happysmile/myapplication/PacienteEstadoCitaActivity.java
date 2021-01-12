@@ -98,7 +98,7 @@ public class PacienteEstadoCitaActivity extends AppCompatActivity {
                String tag = generateKey();
 
                //Toast.makeText(PacienteEstadoCitaActivity.this, "Mi fecha desde la notificacion es: "+Fecha, Toast.LENGTH_SHORT).show();
-               String dateTimeUser = Fecha+" "+Hora_Estado;
+               String dateTimeUser = Fecha + " " + Hora_Estado;
              //  Toast.makeText(PacienteEstadoCitaActivity.this, "MI HORA Y FECH: "+dateTimeUser, Toast.LENGTH_SHORT).show();
              //  LocalDateTime localDateTime = LocalDateTime.parse(dateTimeUser, DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
                //long millis = localDateTime
@@ -109,10 +109,10 @@ public class PacienteEstadoCitaActivity extends AppCompatActivity {
                try {
                    Calendar cal = Calendar.getInstance();
                    cal.setTime(sdf.parse(dateTimeUser));
-                   Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+cal.getTimeInMillis(), Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+cal.getTimeInMillis(), Toast.LENGTH_SHORT).show();
 
                    Long  Alertime =  cal.getTimeInMillis() - System.currentTimeMillis();
-                   Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+Alertime, Toast.LENGTH_LONG).show();
+               //    Toast.makeText(PacienteEstadoCitaActivity.this, "mi fecha y hORA  es:"+Alertime, Toast.LENGTH_LONG).show();
 
                int random =(int) (Math.random()*50+1);
                    Data data = guardarData("Happy Smile","Tienes una Cita Aprobada para el dia de hoy",random);

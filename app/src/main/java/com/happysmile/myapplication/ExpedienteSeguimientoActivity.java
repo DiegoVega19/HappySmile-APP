@@ -28,6 +28,7 @@ public class ExpedienteSeguimientoActivity extends AppCompatActivity {
     SearchView searchView;
     UserSeguimientoAdapter adapter;
     private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,20 +61,19 @@ public class ExpedienteSeguimientoActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
-                return  true;
+                return true;
             }
         });
     }
-    private void getSeguimientos()
-    {
+
+    private void getSeguimientos() {
         Call<SeguimientoResponse> seguimientoResponseCall = ApiClient.getService().getDocSeg();
         seguimientoResponseCall.enqueue(new Callback<SeguimientoResponse>() {
             @Override
             public void onResponse(Call<SeguimientoResponse> call, Response<SeguimientoResponse> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     List<Seguimiento> seguimientos = response.body().getSeguimiento();
-                    adapter = new UserSeguimientoAdapter(getApplicationContext(),seguimientos);
+                    adapter = new UserSeguimientoAdapter(getApplicationContext(), seguimientos);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     recyclerView.smoothScrollToPosition(0);

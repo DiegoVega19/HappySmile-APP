@@ -17,6 +17,7 @@ import retrofit2.Response;
 public class PacienteEndoTratDetalleActivity extends AppCompatActivity {
     int IdRecibido;
     EditText fechaIniText, fechaUltText, descripcionText, observacionText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class PacienteEndoTratDetalleActivity extends AppCompatActivity {
         descripcionText = findViewById(R.id.EndomensajeDescrip);
         observacionText = findViewById(R.id.EndomensajeObservacion);
         IdRecibido = getIntent().getExtras().getInt("id");
-        Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Mi id es: " + IdRecibido, Toast.LENGTH_SHORT).show();
         obtenerTratamiento();
     }
 
@@ -35,7 +36,7 @@ public class PacienteEndoTratDetalleActivity extends AppCompatActivity {
         tratamientoEndodonciaCall.enqueue(new Callback<TratamientoEndodoncia>() {
             @Override
             public void onResponse(Call<TratamientoEndodoncia> call, Response<TratamientoEndodoncia> response) {
-                if (response.isSuccessful());
+                if (response.isSuccessful()) ;
                 {
                     String fecha, fechaprox, descripcion, observacion;
                     TratamientoEndodoncia tratamientoEndodoncia = response.body();

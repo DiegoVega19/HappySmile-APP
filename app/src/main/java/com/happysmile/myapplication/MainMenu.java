@@ -36,7 +36,7 @@ public class MainMenu extends AppCompatActivity {
         cardCitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainMenu.this,DoctorCitasMenuActivity.class);
+                Intent i = new Intent(MainMenu.this, DoctorCitasMenuActivity.class);
                 startActivity(i);
             }
         });
@@ -44,7 +44,7 @@ public class MainMenu extends AppCompatActivity {
         cardExpediente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainMenu.this,ExpedienteActivity.class);
+                Intent i = new Intent(MainMenu.this, ExpedienteActivity.class);
                 startActivity(i);
             }
         });
@@ -52,16 +52,16 @@ public class MainMenu extends AppCompatActivity {
         cardPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainMenu.this,PerfilActivity.class);
+                Intent i = new Intent(MainMenu.this, PerfilActivity.class);
                 startActivity(i);
             }
         });
     }
 
     private void cargarDatos() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-        String datos = pref.getString("DIEGO","no hay nada");
-        String correo = pref.getString("Correo","no hay nada");
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
+        String datos = pref.getString("DIEGO", "no hay nada");
+        String correo = pref.getString("Correo", "no hay nada");
         doctorNombre.setText(datos);
         CorreoDoctor = correo;
         obtenerDatosDoctor();
@@ -73,14 +73,13 @@ public class MainMenu extends AppCompatActivity {
         doctorCall.enqueue(new Callback<Doctor>() {
             @Override
             public void onResponse(Call<Doctor> call, Response<Doctor> response) {
-                if (response.isSuccessful())
-                {
-                   int DocId;
-                   DocId = response.body().getId();
-                    Toast.makeText(MainMenu.this, "Mi id de doctor es"+DocId, Toast.LENGTH_SHORT).show();
-                    SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+                if (response.isSuccessful()) {
+                    int DocId;
+                    DocId = response.body().getId();
+                   // Toast.makeText(MainMenu.this, "Mi id de doctor es" + DocId, Toast.LENGTH_SHORT).show();
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
-                    editor.putInt("idDoctor",DocId);
+                    editor.putInt("idDoctor", DocId);
                     editor.commit();
                 }
             }
@@ -88,7 +87,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onFailure(Call<Doctor> call, Throwable t) {
                 String message = t.getLocalizedMessage();
-                Toast.makeText(MainMenu.this,message, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainMenu.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -20,16 +20,17 @@ import retrofit2.Response;
 
 public class DoctorCitasMenuActivity extends AppCompatActivity {
 
-   int IdDoctor;
+    int IdDoctor;
     View v;
     int CitasCount;
 
     CardView cardCalendar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_citas_menu);
-        v =  findViewById(android.R.id.content);
+        v = findViewById(android.R.id.content);
         cardCalendar = findViewById(R.id.CardCalendar);
         //Ahora obtengo datos en shared
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
@@ -44,12 +45,11 @@ public class DoctorCitasMenuActivity extends AppCompatActivity {
         doctorCitaCall.enqueue(new Callback<DoctorCita>() {
             @Override
             public void onResponse(Call<DoctorCita> call, Response<DoctorCita> response) {
-               if (response.isSuccessful())
-               {
-                   CitasCount = response.body().getTotalCitas();
-                   Toast.makeText(DoctorCitasMenuActivity.this, "Mi total de citas como Doctor es:"+CitasCount, Toast.LENGTH_SHORT).show();
-                   irCitas();
-               }
+                if (response.isSuccessful()) {
+                    CitasCount = response.body().getTotalCitas();
+                    //Toast.makeText(DoctorCitasMenuActivity.this, "Mi total de citas como Doctor es:"+CitasCount, Toast.LENGTH_SHORT).show();
+                    irCitas();
+                }
             }
 
             @Override
@@ -59,26 +59,24 @@ public class DoctorCitasMenuActivity extends AppCompatActivity {
             }
         });
     }
-    private  void irCitas(){
+
+    private void irCitas() {
         cardCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (CitasCount==0)
-                {
+                if (CitasCount == 0) {
                     MostrarSnackbarEstado();
-                }
-                else
-                {
-                    Intent i = new Intent(DoctorCitasMenuActivity.this,CitasActivity.class);
+                } else {
+                    Intent i = new Intent(DoctorCitasMenuActivity.this, CitasActivity.class);
                     startActivity(i);
                 }
 
             }
         });
     }
-    public  void MostrarSnackbarEstado()
-    {
-        Snackbar snackbar = Snackbar.make(v,"No Posee Registros de Citas",Snackbar.LENGTH_LONG);
+
+    public void MostrarSnackbarEstado() {
+        Snackbar snackbar = Snackbar.make(v, "No Posee Registros de Citas", Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 }

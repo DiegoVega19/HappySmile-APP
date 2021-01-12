@@ -28,6 +28,7 @@ public class ExpedienteEndodonciaActivity extends AppCompatActivity {
     UserEndoAdapter adapter;
     SearchView searchView;
     private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class ExpedienteEndodonciaActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 Toast.makeText(ExpedienteEndodonciaActivity.this, "Actualizado!!", Toast.LENGTH_SHORT).show();
-               getEndo();
+                getEndo();
                 refresh.setRefreshing(false);
             }
         });
@@ -60,18 +61,18 @@ public class ExpedienteEndodonciaActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
-                return  true;
+                return true;
             }
         });
     }
-    private void getEndo()
-    {
+
+    private void getEndo() {
         Call<EndodonciaResponse> endodonciaResponseCall = ApiClient.getService().getDocEndo();
         endodonciaResponseCall.enqueue(new Callback<EndodonciaResponse>() {
             @Override
             public void onResponse(Call<EndodonciaResponse> call, Response<EndodonciaResponse> response) {
-                List<Endodoncia>endodoncias = response.body().getEndodoncia();
-                adapter = new UserEndoAdapter(getApplicationContext(),endodoncias);
+                List<Endodoncia> endodoncias = response.body().getEndodoncia();
+                adapter = new UserEndoAdapter(getApplicationContext(), endodoncias);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 recyclerView.smoothScrollToPosition(0);

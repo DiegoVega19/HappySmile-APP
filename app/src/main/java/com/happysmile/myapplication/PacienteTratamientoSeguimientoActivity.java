@@ -30,6 +30,7 @@ public class PacienteTratamientoSeguimientoActivity extends AppCompatActivity {
     SeguimientoAdapter adapter;
     private RecyclerView recyclerView;
     private Seguimiento seguimiento;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +69,7 @@ public class PacienteTratamientoSeguimientoActivity extends AppCompatActivity {
         });
     }
 
-    private  void  getSeguimientos()
-    {
+    private void getSeguimientos() {
         //Ahora obtengo datos en shared
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
         idPacienteCita = pref.getInt("idPaciente", 0);
@@ -77,14 +77,13 @@ public class PacienteTratamientoSeguimientoActivity extends AppCompatActivity {
         seguimientoCall.enqueue(new Callback<SeguimientoResponse>() {
             @Override
             public void onResponse(Call<SeguimientoResponse> call, Response<SeguimientoResponse> response) {
-               if (response.isSuccessful())
-               {
-                   List<Seguimiento> seguimientos = response.body().getSeguimiento();
-                 adapter = new SeguimientoAdapter(getApplicationContext(),seguimientos);
-                   recyclerView.setAdapter(adapter);
-                  recyclerView.smoothScrollToPosition(0);
-                  adapter.notifyDataSetChanged();
-               }
+                if (response.isSuccessful()) {
+                    List<Seguimiento> seguimientos = response.body().getSeguimiento();
+                    adapter = new SeguimientoAdapter(getApplicationContext(), seguimientos);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.smoothScrollToPosition(0);
+                    adapter.notifyDataSetChanged();
+                }
 
             }
 

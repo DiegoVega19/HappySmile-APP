@@ -22,6 +22,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     int idPacienteCita;
     EditText nombres, edad, email, telefono, celular;
     Button btnSalirSesion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +45,9 @@ public class EditarPerfilActivity extends AppCompatActivity {
         pacienteCall.enqueue(new Callback<Paciente>() {
             @Override
             public void onResponse(Call<Paciente> call, Response<Paciente> response) {
-                if(response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     String pacNombre, pacApellido, emailPac, telefonoPac, celularPac;
-                    int  pacEdad;
+                    int pacEdad;
                     Paciente paciente = response.body();
                     pacNombre = response.body().getNombre();
                     pacApellido = response.body().getApellido();
@@ -56,12 +56,12 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     telefonoPac = response.body().getTelefono();
                     celularPac = response.body().getCelular();
 
-                    nombres.setText(pacNombre+" "+pacApellido);
-                    edad.setText(pacEdad+" Años");
+                    nombres.setText(pacNombre + " " + pacApellido);
+                    edad.setText(pacEdad + " Años");
                     email.setText(emailPac);
                     telefono.setText(telefonoPac);
                     celular.setText(celularPac);
-                    Toast.makeText(EditarPerfilActivity.this, "Mi nombre es"+pacNombre, Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(EditarPerfilActivity.this, "Mi nombre es"+pacNombre, Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -80,12 +80,12 @@ public class EditarPerfilActivity extends AppCompatActivity {
         btnSalirSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.clear();
                 editor.commit();
                 Toast.makeText(EditarPerfilActivity.this, "Hasta Pronto!", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(EditarPerfilActivity.this,LoginActivity.class);
+                Intent i = new Intent(EditarPerfilActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });

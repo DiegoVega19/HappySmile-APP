@@ -53,7 +53,7 @@ public class PacienteTratamientoMenu extends AppCompatActivity {
                 {
                     TotalResponse totalResponse = response.body();
                     ExpCount = response.body().getTotalExpedientes();
-                    Toast.makeText(PacienteTratamientoMenu.this, "Mi total de expedientes es"+ExpCount, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(PacienteTratamientoMenu.this, "Mi total de expedientes es"+ExpCount, Toast.LENGTH_SHORT).show();
                     irExpediente();
                 }
             }
@@ -75,7 +75,7 @@ public class PacienteTratamientoMenu extends AppCompatActivity {
                 {
                     TotalResponse totalResponse = response.body();
                     SegCount = response.body().getTotalSeguimientos();
-                    Toast.makeText(PacienteTratamientoMenu.this, "Mi total de seguimietos es"+SegCount, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(PacienteTratamientoMenu.this, "Mi total de seguimietos es"+SegCount, Toast.LENGTH_SHORT).show();
                     irSeguimiento();
                 }
             }
@@ -97,7 +97,7 @@ public class PacienteTratamientoMenu extends AppCompatActivity {
                 {
                     TotalResponse totalResponse = response.body();
                     EndoCount = response.body().getTotalEndodoncias();
-                    Toast.makeText(PacienteTratamientoMenu.this, "Mi total de endodoncias es"+EndoCount, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(PacienteTratamientoMenu.this, "Mi total de endodoncias es"+EndoCount, Toast.LENGTH_SHORT).show();
                     irEndodoncia();
                 }
             }

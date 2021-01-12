@@ -19,6 +19,7 @@ public class PacienteTratamientoExpediente extends AppCompatActivity {
 
     int idPacienteCita;
     EditText fechaIniText, fechaUltText, descripcionText, observacionText;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,7 @@ public class PacienteTratamientoExpediente extends AppCompatActivity {
         tratamientoExpedienteCall.enqueue(new Callback<TratamientoExpediente>() {
             @Override
             public void onResponse(Call<TratamientoExpediente> call, Response<TratamientoExpediente> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     String fecha, fechaprox, descripcion, observacion;
                     TratamientoExpediente tratamientoExpediente = response.body();
                     fecha = response.body().getFechaInicio();

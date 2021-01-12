@@ -28,7 +28,7 @@ public class SeguimientoDetalleActivity extends AppCompatActivity {
         proxCita = findViewById(R.id.SegDetailProximaCita);
 
         IdRecibido = getIntent().getExtras().getInt("idSeg");
-        Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Mi id es: "+IdRecibido, Toast.LENGTH_SHORT).show();
         getDetalle();
     }
 

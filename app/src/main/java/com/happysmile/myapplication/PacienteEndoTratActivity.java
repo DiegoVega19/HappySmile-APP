@@ -38,6 +38,7 @@ public class PacienteEndoTratActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Endodoncia endodoncia;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +71,7 @@ public class PacienteEndoTratActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
-                return  true;
+                return true;
             }
         });
     }
@@ -83,11 +84,10 @@ public class PacienteEndoTratActivity extends AppCompatActivity {
         endodonciaResponseCall.enqueue(new Callback<EndodonciaResponse>() {
             @Override
             public void onResponse(Call<EndodonciaResponse> call, Response<EndodonciaResponse> response) {
-                if (response.isSuccessful())
-                {
-                   endodoncias = response.body().getEndodoncia();
-                    adapter = new EndodonciaAdapter(getApplicationContext(),endodoncias);
-                  //  recyclerView.setAdapter(new EndodonciaAdapter(getApplicationContext(),endodoncias));
+                if (response.isSuccessful()) {
+                    endodoncias = response.body().getEndodoncia();
+                    adapter = new EndodonciaAdapter(getApplicationContext(), endodoncias);
+                    //  recyclerView.setAdapter(new EndodonciaAdapter(getApplicationContext(),endodoncias));
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     recyclerView.smoothScrollToPosition(0);

@@ -170,7 +170,7 @@
 
     <EditText
         android:id="@+id/segDetailMotivoConsulta"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"

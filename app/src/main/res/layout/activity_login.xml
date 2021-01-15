@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="220dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="16dp"
@@ -50,11 +50,11 @@
 
     <EditText
         android:id="@+id/nameText"
-        android:layout_width="381dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="34dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/input_style"
         android:drawableStart="@drawable/user"
         android:drawablePadding="10dp"
@@ -68,11 +68,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/PassText"
-            android:layout_width="381dp"
+            android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/input_style"
             android:drawableStart="@drawable/pass"

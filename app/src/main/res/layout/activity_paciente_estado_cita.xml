@@ -100,7 +100,7 @@
 
             <EditText
                 android:id="@+id/mensajeText"
-                android:layout_width="379dp"
+                android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -121,7 +121,7 @@
 
             <EditText
                 android:id="@+id/doctorNombreText"
-                android:layout_width="379dp"
+                android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -181,7 +181,7 @@
 
             <EditText
                 android:id="@+id/servicioText"
-                android:layout_width="379dp"
+                android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
